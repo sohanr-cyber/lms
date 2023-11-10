@@ -10,7 +10,10 @@ const CourseContent = ({ data }) => {
 
   return (
     <div className={styles.wrapper}>
-      <h2>Table Of Content</h2>
+      <div className={styles.space}>
+        <h2>Table Of Content</h2>
+        <div className={styles.new}>+</div>
+      </div>
       <div className={styles.flex}>
         {data.map((item, index) => (
           <>
@@ -29,11 +32,14 @@ const CourseContent = ({ data }) => {
               <div className={styles.title}>
                 {index + 1}.{item.title}
               </div>
-              <div
-                className={styles.play}
-                onClick={() => (open == item ? setOpen(null) : setOpen(item))}
-              >
-                <KeyboardArrowDownIcon />
+              <div className={styles.icons}>
+                <div className={styles.new}>+</div>
+                <div
+                  className={styles.play}
+                  onClick={() => (open == item ? setOpen(null) : setOpen(item))}
+                >
+                  <KeyboardArrowDownIcon />
+                </div>
               </div>
             </div>
             {open == item && (

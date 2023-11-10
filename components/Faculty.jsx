@@ -2,6 +2,7 @@ import Image from "next/image";
 import React from "react";
 import styles from "../styles/Faculty.module.css";
 import slugify from "slugify";
+const icon = "https://cdn-icons-png.flaticon.com/128/1050/1050453.png";
 
 import { useRouter } from "next/router";
 const Faculty = ({ data, background, program, title }) => {
@@ -19,21 +20,19 @@ const Faculty = ({ data, background, program, title }) => {
     >
       <h1>{title}</h1>
       <div className={styles.flex}>
-        {data.map((item, index) => (
+        {data?.map((item, index) => (
           <div
             className={styles.item}
             key={index}
             onClick={() =>
-              program
-                ? router.push(
-                    `/faculty/${slugify(item.title)}/${slugify(item.title)}`
-                  )
-                : router.push(`/faculty/${slugify(item.title)}`)
+              router.push(
+                `/division/${router.query.slug}/${slugify(item.title)}`
+              )
             }
           >
             <Image
               priority
-              src={item.icon}
+              src={icon}
               width={50}
               height={50}
               alt={item.title}

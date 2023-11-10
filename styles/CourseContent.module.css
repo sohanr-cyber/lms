@@ -2,6 +2,24 @@
     padding: 50px 25px;
 }
 
+.wrapper .space {
+    display: flex;
+    justify-content: space-between;
+}
+
+.wrapper .new {
+    background: green;
+    padding: 3px 7px;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 120%
+}
+
+.wrapper .icons {
+    display: flex;
+    justify-content: center;
+    gap: 25px;
+}
 
 .wrapper .flex {
     margin: 10px 0

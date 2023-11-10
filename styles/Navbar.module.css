@@ -30,7 +30,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 10px;
+    gap: 15px;
     /* max-width: 600px;
     overflow-x: scroll */
 }
@@ -41,10 +41,9 @@
     height: 0
 } */
 
-/* .wrapper .items .item {
+.wrapper .items .item {
     cursor: pointer;
-    min-width: 250px
-} */
+}
 
 .wrapper .items .item:hover {
     color: var(--purple)
@@ -76,10 +75,8 @@
     cursor: pointer;
 }
 
-@media (max-width: 570px) {
-    .wrapper {
-        padding: 10px
-    }
+@media (max-width: 720px) {
+
 
     .wrapper .items {
         display: none;
@@ -103,5 +100,11 @@
 
     .mobileItems .item:hover {
         color: purple
+    }
+}
+
+@media (max-width:570px) {
+    .wrapper {
+        padding: 10px
     }
 }
