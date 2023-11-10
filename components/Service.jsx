@@ -38,7 +38,7 @@ const data = [
     route: `/faculty/${slugify("Bangla Literature And Grammer")}`,
   },
   {
-    name: "Information And Technology",
+    title: "Information And Technology",
     icon: "https://cdn-icons-png.flaticon.com/128/1050/1050453.png",
     code: "MBA",
     route: `/faculty/${slugify("Information And Technology")}`,

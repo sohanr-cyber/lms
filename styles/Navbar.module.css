@@ -76,7 +76,11 @@
     cursor: pointer;
 }
 
-@media (max-width: 767px) {
+@media (max-width: 570px) {
+    .wrapper {
+        padding: 10px
+    }
+
     .wrapper .items {
         display: none;
     }

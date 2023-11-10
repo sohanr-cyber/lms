@@ -52,7 +52,9 @@
         min-height: none;
         max-height: 60px;
         gap: 10px;
-        padding: 5px
+        padding: 5px;
+        align-items: center;
+
     }
 
     .wrapper .flex .item .title {
