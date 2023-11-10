@@ -75,7 +75,7 @@
 
     .wrapper .flex .item .imageContainer {
         flex: 1;
-        aspect-ratio: 1/1;
+        /* aspect-ratio: 1/1; */
         /* width: 50%; */
         background-color: skyblue;
         border-radius: 5px;
