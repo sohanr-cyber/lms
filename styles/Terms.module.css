@@ -1,0 +1,22 @@
+.wrapper {
+    padding: 70px 25px
+}
+
+.wrapper h1 {
+    border-bottom: 2px solid green;
+    padding-bottom: 5px
+}
+
+.wrapper .flex {
+    margin-top: 30px
+}
+
+@media (max-width: 570px) {
+    .wrapper {
+        padding: 60px 10px
+    }
+
+    .wrapper .flex {
+        margin-top: 15px
+    }
+}

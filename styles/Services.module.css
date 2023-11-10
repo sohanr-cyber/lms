@@ -37,7 +37,7 @@
     .wrapper {
         padding: 30px 10px;
         text-align: center;
-        min-height: 600px;
+        /* min-height: 300px; */
         text-align: left;
     }
 

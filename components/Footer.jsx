@@ -4,6 +4,7 @@ import FacebookIcon from "@mui/icons-material/Facebook";
 import LinkedInIcon from "@mui/icons-material/LinkedIn";
 import InstagramIcon from "@mui/icons-material/Instagram";
 import slugify from "slugify";
+import { useRouter } from "next/router";
 
 const routes = [
   {
@@ -32,6 +33,7 @@ const routes = [
   },
 ];
 const Footer = () => {
+  const router = useRouter();
   return (
     <div className={styles.wrapper}>
       <div className={styles.left}>
@@ -61,8 +63,18 @@ const Footer = () => {
           <div className={styles.item}>Information & Technology</div>
         </div>
         <div className={styles.flex}>
-          <div className={styles.item}>Terms and conditions</div>
-          <div className={styles.item}>Privacy and policy</div>
+          <div
+            className={styles.item}
+            onClick={() => router.push("/terms-and-conditions")}
+          >
+            Terms and conditions
+          </div>
+          <div
+            className={styles.item}
+            onClick={() => router.push("/privacy-policy")}
+          >
+            Privacy and policy
+          </div>
         </div>
       </div>
       <div className={styles.right}>

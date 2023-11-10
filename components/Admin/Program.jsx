@@ -3,6 +3,8 @@ import styles from "../../styles/Admin/Table.module.css";
 import slugify from "slugify";
 import Image from "next/image";
 
+const icon = "https://cdn-icons-png.flaticon.com/128/1050/1050453.png";
+
 const Program = ({ title, data, member }) => {
   const handleAction = () => {
     return;
@@ -37,12 +39,7 @@ const Program = ({ title, data, member }) => {
                     : "Sed ut perspiciatis unde omnis iste ..."}
                 </td>
                 <td style={{ textAlign: "center" }}>
-                  <Image
-                    src={item.icon}
-                    width="30"
-                    height="30"
-                    alt={item.title}
-                  />
+                  <Image src={icon} width="30" height="30" alt={item.title} />
                 </td>
 
                 <td

@@ -1,0 +1,30 @@
+.wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 400px;
+    /* background-color: rgb(205, 235, 247); */
+}
+
+.wrapper form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    border: 1px solid lightgrey;
+    padding: 10px
+}
+
+.wrapper input {
+    padding: 5px;
+    border-radius: 5px;
+    border: 1px solid lightgrey
+}
+
+.wrapper form .btn {
+    padding: 5px;
+    border-radius: 5px;
+    border: 1px solid lightgrey;
+    text-align: center;
+    background-color: green;
+    cursor: pointer;
+}

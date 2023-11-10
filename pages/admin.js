@@ -1,6 +1,7 @@
 import Program from "@/components/Admin/Program";
 import React from "react";
 import slugify from "slugify";
+import { divisions } from "@/data";
 const data = [
   {
     title: "Applied Langustic And  ELT",
@@ -64,6 +65,7 @@ const peopleData = [
 const admin = () => {
   return (
     <div style={{ minHeight: "400px" }}>
+      <Program title={"Division"} data={divisions} />
       <Program title={"Program"} data={data} />
       <Program title={"Course"} data={data} />
       <Program title={"Member"} data={peopleData} member={"true"} />
