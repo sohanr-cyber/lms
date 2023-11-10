@@ -2,7 +2,10 @@ import React from "react";
 import styles from "../styles/InnerContent.module.css";
 import PlayCircleIcon from "@mui/icons-material/PlayCircle";
 import PictureAsPdfIcon from "@mui/icons-material/PictureAsPdf";
+import { useRouter } from "next/router";
+
 const InnerContnet = ({ data, background }) => {
+  const router = useRouter();
   return (
     <div
       className={styles.wrapper}
@@ -34,7 +37,13 @@ const InnerContnet = ({ data, background }) => {
               help and support when you need it.
             </div> */}
             <div className={styles.right}>
-              <PlayCircleIcon />
+              <PlayCircleIcon
+                onClick={() =>
+                  router.push(
+                    "https://www.facebook.com/watch/?v=336687492379445&extid=CL-UNK-UNK-UNK-AN_GK0T-GK1C&ref=sharing&mibextid=h7HYfJ"
+                  )
+                }
+              />
               <PictureAsPdfIcon />
             </div>
           </div>

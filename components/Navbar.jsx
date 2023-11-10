@@ -11,7 +11,7 @@ const routes = [
   { name: "About", route: "/about" },
   {
     name: "Program",
-    route:"/faculty",
+    route: "/faculty",
     arr: [
       {
         name: "General Science (6-12)",
@@ -39,6 +39,7 @@ const routes = [
       },
     ],
   },
+  { name: "Admin", route: "/admin" },
 ];
 
 const icon = "https://cdn-icons-png.flaticon.com/128/1050/1050453.png";
