@@ -1,0 +1,38 @@
+.wrapper {
+    min-height: 100vh;
+    text-align: center;
+    padding: 50px 25px;
+}
+
+
+.wrapper .flex {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 15px;
+    margin-top: 50px;
+}
+
+.wrapper .flex .item {
+    /* min-width:200px; */
+    max-width: 200px;
+    min-width: 200px;
+    aspect-ratio: 3/2;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid lightgrey;
+    cursor: pointer;
+}
+
+
+.wrapper .flex .item:hover {
+    border: 1px solid grey;
+
+}
+
+.item .title {
+    font-weight: bold;
+    font-size: 110%;
+    margin: 10px 0
+}

@@ -1,0 +1,21 @@
+.wrapper {
+    padding: 70px 25px;
+    background: linear-gradient(35deg, rgb(15, 19, 60), rgb(2, 2, 131));
+    color: white;
+    /* min-height: 200px; */
+    padding-bottom: 50px;
+    text-align: left;
+}
+
+.wrapper h1 {
+    border-bottom: 2px solid yellow;
+    margin-bottom: 10px;
+    padding-bottom: 5px;
+}
+
+@media (max-width:570px) {
+    .wrapper {
+        padding: 60px 10px;
+        padding-bottom: 30px;
+    }
+}

@@ -1,0 +1,64 @@
+.wrapper {
+    text-align: center;
+    padding: 70px 10px;
+    background-color: rgb(193, 126, 255, 0.3);
+
+}
+
+
+.wrapper .flex {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 15px;
+    margin-top: 35px;
+}
+
+.wrapper .flex .item {
+    max-width: 200px;
+    min-width: 200px;
+    border-radius: 5px;
+    border: 1px solid grey;
+    padding: 10px;
+    cursor: pointer;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    min-height: 220px;
+    color: white;
+    text-align: left;
+}
+
+.wrapper .flex .item:hover {
+    border: 1px solid black;
+}
+
+.flex .item .title {
+    font-weight: bold;
+    margin: 10px 0;
+    font-size: 120%
+}
+
+
+@media (max-width:570px) {
+
+    .wrapper {
+        text-align: left;
+        padding: 30px 10px;
+
+    }
+
+    .wrapper .flex {
+        justify-content: flex-start;
+        flex-wrap: nowrap;
+        overflow-x: scroll;
+        margin-top: 25px;
+    }
+
+    .wrapper .flex::-webkit-scrollbar {
+        height: 1px
+    }
+
+
+}

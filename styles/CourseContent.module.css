@@ -1,0 +1,30 @@
+.wrapper {
+    padding: 50px 25px;
+}
+
+
+.wrapper .flex {
+    margin: 10px 0
+}
+
+.wrapper .item {
+    padding: 10px;
+    border: 1px solid lightgray;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 10px 0;
+    border-radius: 5px;
+    background-color: skyblue;
+}
+
+.wrapper .item:hover {
+    border: 1px solid black
+}
+
+@media (max-width: 570px) {
+    .wrapper {
+        padding: 30px 10px;
+    }
+
+}

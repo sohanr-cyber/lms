@@ -1,0 +1,41 @@
+.wrapper {
+    border: 1px solid lightgrey;
+    padding: 10px;
+    /* background: linear-gradient(175deg, rgb(0, 0, 255, 0.1), rgb(0, 255, 255, 0.2)); */
+    font-size: 90%;
+    border-radius: 5px;
+    /* margin-left: 10px; */
+    margin-top: -10px;
+    /* margin-right: -10px; */
+
+
+
+}
+
+
+.wrapper .items {
+    display: flex;
+    margin: 10px 5px;
+}
+
+.wrapper .item {
+    padding: 10px;
+    border: 1px solid lightgrey;
+    border-radius: 5px;
+    margin: 10px 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+
+}
+
+.wrapper .item:hover {
+    border: 1px solid grey;
+}
+
+.wrapper .item .right {
+    display: flex;
+    gap: 15px;
+    color: blue
+}
