@@ -18,12 +18,13 @@
 .wrapper h2,
 .wrapper p,
 .wrapper .flex {
-    z-index: 1;
+    z-index: 2;
 }
 
 .wrapper::after {
     content: "";
     /* background: rgb(0, 0, 0, 0.5); */
+    z-index: 1;
     top: 0;
     right: 0;
     width: 100%;
@@ -88,7 +89,6 @@
     }
 
     .wrapper .flex {
-        border: 1px solid purple;
         margin-top: 15px;
     }
 

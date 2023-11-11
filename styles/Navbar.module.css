@@ -11,7 +11,7 @@
     position: fixed;
     top: 0;
     width: 100%;
-    z-index: 1;
+    z-index: 3;
 }
 
 
@@ -69,6 +69,7 @@
     text-align: center;
     padding: 15px 5px;
     display: none;
+    z-index: 5;
 }
 
 .close {
@@ -92,6 +93,9 @@
 
     .mobileItems {
         display: flex;
+        z-index: 1;
+        position: fixed;
+        z-index: 3
     }
 
     .mobileItems .item {
@@ -107,4 +111,10 @@
     .wrapper {
         padding: 10px
     }
+
+    .mobileItems {
+        display: flex;
+        z-index: 10;
+    }
+
 }

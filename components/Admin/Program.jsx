@@ -2,18 +2,29 @@ import React from "react";
 import styles from "../../styles/Admin/Table.module.css";
 import slugify from "slugify";
 import Image from "next/image";
+import { useRouter } from "next/router";
+import Form from "./Forms/Form";
+import ProgramForm from "./Forms/ProgramForm";
 
 const icon = "https://cdn-icons-png.flaticon.com/128/1050/1050453.png";
 
 const Program = ({ title, data, member }) => {
+  const router = useRouter();
+
   const handleAction = () => {
     return;
   };
+
+  console.log(router.query);
   return (
     <div className={styles.wrapper}>
       <div className={styles.flex}>
         <h2>{title}</h2>
-        <h2 div className={styles.new}>
+        <h2
+          div
+          className={styles.new}
+          onClick={() => router.push("/admin?create=division")}
+        >
           +
         </h2>
       </div>
@@ -60,6 +71,11 @@ const Program = ({ title, data, member }) => {
           </tbody>
         </table>
       </div>
+      {router.query.create == "division" && (
+        <div className={styles.form}>
+          <ProgramForm />
+        </div>
+      )}
     </div>
   );
 };
