@@ -1,0 +1,19 @@
+.wrapper {
+    /* padding: 10px 25px; */
+    background: linear-gradient(145.7deg, #0b3b51 7.61%, rgba(57, 27, 75, 0) 79.73%), linear-gradient(229.74deg, #2c7286 9.39%, rgba(0, 0, 255, 0) 83.29%), linear-gradient(83.06deg, #fe67ec 2.35%, #6b90e5 94.92%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* font-weight: bold; */
+    text-transform: capitalize;
+    /* font-size: 120%; */
+    background-color: rgb(3, 3, 3);
+    color: #ffffff;
+    position: fixed;
+    bottom: 0px;
+    width: 100%;
+    z-index: 5;
+    padding: 5px 10px;
+    font-weight: bold;
+
+}
