@@ -1,4 +1,5 @@
 import mongoose from "mongoose";
+const validRoles = ["student", "instructor", "admin"];
 
 const userSchema = new mongoose.Schema(
   {
@@ -17,12 +18,14 @@ const userSchema = new mongoose.Schema(
     },
     password: {
       type: String,
-      required: true,
+      required: false,
     },
     role: {
       type: String,
       enum: ["student", "instructor", "admin"],
       required: true,
+      default: "student",
+      enum: validRoles,
     },
     image: {
       type: String,

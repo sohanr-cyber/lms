@@ -1,0 +1,33 @@
+.wrapper {
+    padding: 70px 25px;
+    padding-bottom: 0;
+}
+
+.wrapper .flex {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 15px;
+    overflow-x: scroll;
+}
+
+.wrapper .flex::-webkit-scrollbar {
+    height: 0
+}
+
+.wrapper .flex .item {
+    display: flex;
+    gap: 15px;
+    align-items: flex-start;
+    border-radius: 5px;
+    border: 1px solid lightgrey;
+    padding: 10px;
+    min-width: 180px;
+    background-color: aliceblue;
+    cursor: pointer;
+    ;
+}
+
+.wrapper .flex .item .title {
+    font-weight: bold;
+}

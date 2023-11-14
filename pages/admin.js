@@ -2,6 +2,7 @@ import Program from "@/components/Admin/Program";
 import React from "react";
 import slugify from "slugify";
 import { divisions } from "@/data";
+import AdminHeading from "@/components/Admin/AdminHeading";
 const data = [
   {
     title: "Applied Langustic And  ELT",
@@ -43,6 +44,7 @@ const data = [
   },
 ];
 
+import { useRouter } from "next/router";
 const peopleData = [
   {
     title: "John Doe",
@@ -62,10 +64,11 @@ const peopleData = [
   // Add more objects as needed
 ];
 
-const admin = () => {
+const Admin = () => {
+  const router = useRouter();
+  const current = router.query.current;
   return (
     <div style={{ minHeight: "400px" }}>
-      <Program title={"Division"} data={divisions} />
       <Program title={"Program"} data={data} />
       <Program title={"Course"} data={data} />
       <Program title={"Member"} data={peopleData} member={"true"} />
@@ -73,4 +76,4 @@ const admin = () => {
   );
 };
 
-export default admin;
+export default Admin;

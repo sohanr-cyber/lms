@@ -25,6 +25,11 @@
     border-radius: 5px;
     border: 1px solid lightgrey;
     text-align: center;
-    background-color: green;
+    background-color: var(--btn);
     cursor: pointer;
+    color: white;
 }
+
+
+
+

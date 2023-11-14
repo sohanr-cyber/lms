@@ -29,10 +29,15 @@ const data = [
       " Connect with like-minded individuals from around the world. Engage in discussions, collaborate on projects, and broaden your horizons.",
   },
 ];
+import { useRouter } from "next/router";
 
 const randomIndex = Math.floor(Math.random() * images.length);
 console.log({ randomIndex });
+
 const Header = () => {
+  const router = useRouter();
+  console.log(router.query.code);
+
   return (
     <div
       className={styles.wrapper}
