@@ -4,6 +4,9 @@ import styles from "../styles/Auth/Login.module.css";
 import { useGoogleLogin } from "@react-oauth/google";
 import GoogleIcon from "@mui/icons-material/Google";
 import Image from "next/image";
+import axios from "axios";
+import { useDispatch } from "react-redux";
+import { login } from "@/redux/userSlice";
 const Login = () => {
   const log = useGoogleLogin({
     onSuccess: async (codeResponse) => {
@@ -19,7 +22,7 @@ const Login = () => {
     onError: (error) => console.log(error),
     flow: "auth-code",
   });
-
+  const dispatch = useDispatch();
   const [userInfo, setUserInfo] = useState({
     password: "",
     email: "",
@@ -43,7 +46,8 @@ const Login = () => {
       const { data } = await axios.post("/api/user/login", {
         ...userInfo,
       });
-      console.log(data);
+
+      dispatch(login(data));
     } catch (error) {
       console.log(error);
     }
@@ -71,7 +75,9 @@ const Login = () => {
             }
           />
 
-          <div className={styles.btn}>Sign In</div>
+          <div className={styles.btn} onClick={() => authLogin()}>
+            Sign In
+          </div>
 
           <div
             onClick={() => log()}

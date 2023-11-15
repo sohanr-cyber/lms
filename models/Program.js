@@ -3,7 +3,7 @@ import mongoose from "mongoose";
 const courseSchema = new mongoose.Schema(
   {
     division: {
-      type: Schema.Types.ObjectId,
+      type: mongoose.Schema.Types.ObjectId,
       ref: "Division", // Reference to the User model (instructor)
       required: true,
     },
@@ -23,9 +23,8 @@ const courseSchema = new mongoose.Schema(
     },
     instructor: [
       {
-        type: Schema.Types.ObjectId,
+        type: mongoose.Schema.Types.ObjectId,
         ref: "User", // Reference to the User model (instructor)
-        required: true,
       },
     ],
   },

@@ -3,7 +3,7 @@ import mongoose from "mongoose";
 const courseSchema = new mongoose.Schema(
   {
     program: {
-      type: Schema.Types.ObjectId,
+      type: mongoose.Schema.Types.ObjectId,
       ref: "Program", // Reference to the User model (instructor)
       required: true,
     },
@@ -31,14 +31,13 @@ const courseSchema = new mongoose.Schema(
     },
     instructor: [
       {
-        type: Schema.Types.ObjectId,
+        type: mongoose.Schema.Types.ObjectId,
         ref: "User", // Reference to the User model (instructor)
-        required: true,
       },
     ],
   },
   { timestamps: true }
 );
 
-const Course = mongoose.models.Course || mongoose.model("User", courseSchema);
+const Course = mongoose.models.Course || mongoose.model("Course", courseSchema);
 export default Course;

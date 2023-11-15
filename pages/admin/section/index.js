@@ -45,6 +45,7 @@ const data = [
 ];
 
 import { useRouter } from "next/router";
+import Section from "@/components/Admin/Section";
 const peopleData = [
   {
     title: "John Doe",
@@ -68,11 +69,12 @@ const Admin = () => {
   const router = useRouter();
   const current = router.query.current;
   return (
-    <div style={{ minHeight: "400px" }}>
-      <Program title={"Program"} data={data} />
-      <Program title={"Course"} data={data} />
-      <Program title={"Member"} data={peopleData} member={"true"} />
-    </div>
+    <>
+      <AdminHeading />
+      <div style={{ minHeight: "400px" }}>
+        <Section title={"Division"} data={data} />
+      </div>
+    </>
   );
 };
 

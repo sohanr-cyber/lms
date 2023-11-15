@@ -7,6 +7,7 @@ const signToken = (user) => {
       name: user.name,
       email: user.email,
       pic: user.pic,
+      role: user.role,
     },
 
     process.env.JWT_SECRET,
@@ -15,6 +16,7 @@ const signToken = (user) => {
     }
   );
 };
+
 
 const isAuth = async (req, res, next) => {
   const { authorization } = req.headers;
@@ -34,4 +36,16 @@ const isAuth = async (req, res, next) => {
   }
 };
 
-export { signToken, isAuth };
+const isAdmin = async (req, res, next) => {
+  try {
+    if (req.user && req.user.role === "admin") {
+      next();
+    } else {
+      throw new Error("Unauthorized: Not Admin");
+    }
+  } catch (error) {
+    res.status(401).send({ message: error.message || "Unauthorized" });
+  }
+};
+
+export { signToken, isAuth, isAdmin };

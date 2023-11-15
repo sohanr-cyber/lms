@@ -17,7 +17,7 @@ handler.post(async (req, res) => {
       return res.status(404).send({ message: "Not found" });
     }
 
-    const match = bcrypt.compareSync(password, existingUser.hashpassword, 10);
+    const match = bcrypt.compareSync(password, existingUser.password, 10);
 
     if (!match) {
       return res.status(404).send({ message: "Wrong Password" });

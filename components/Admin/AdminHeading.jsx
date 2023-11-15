@@ -27,33 +27,33 @@ const data = [
     count: "600",
   },
 ];
+
 const AdminHeading = () => {
   const router = useRouter();
   return (
     <div className={styles.wrapper}>
       <div className={styles.flex}>
         {data.map((item, each) => (
-          <>
-            <div
-              className={styles.item}
-              onClick={() =>
-                router.push(`/admin/current=${slugify(item.title)}`)
-              }
-            >
-              <Image
-                src={"https://cdn-icons-png.flaticon.com/128/3352/3352667.png"}
-                width="20"
-                height="20"
-                alt="Logo"
-              />
-              <div className={styles.right}>
-                <div className={styles.title}>{item.title}</div>
-                <div className={styles.count}>
-                  <CountUp end={item.count} duration={1.5} />
-                </div>
+          <div
+            key={each}
+            className={styles.item}
+            onClick={() =>
+              router.push(`/admin?current=${slugify(item.title.toLowerCase())}`)
+            }
+          >
+            <Image
+              src={"https://cdn-icons-png.flaticon.com/128/3352/3352667.png"}
+              width="20"
+              height="20"
+              alt="Logo"
+            />
+            <div className={styles.right}>
+              <div className={styles.title}>{item.title}</div>
+              <div className={styles.count}>
+                <CountUp end={item.count} duration={1.5} />
               </div>
             </div>
-          </>
+          </div>
         ))}
       </div>
     </div>

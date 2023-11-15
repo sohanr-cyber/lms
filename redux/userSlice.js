@@ -1,21 +1,29 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { getCookies, getCookie, setCookie, deleteCookie } from "cookies-next";
+import Cookies from "js-cookie";
 
-export const counterSlice = createSlice({
-  name: "counter",
+export const userSlice = createSlice({
+  name: "user",
   initialState: {
-    userInfo: getCookie("userInfo") ? getCookie("userInfo") : {},
+    userInfo: Cookies.get("userInfo")
+      ? JSON.parse(Cookies.get("userInfo"))
+      : null,
+    // userInfo: null,
   },
+
   reducers: {
     login: (state, action) => {
-      setCookie("userInfo", action.payload);
       console.log(action.payload);
+      Cookies.set("userInfo", JSON.stringify(action.payload));
       state.userInfo = action.payload;
+    },
+    logout: (state) => {
+      Cookies.remove("userInfo");
+      state.userInfo = null;
     },
   },
 });
 
 // Action creators are generated for each case reducer function
-export const { login } = counterSlice.actions;
+export const { login, logout } = userSlice.actions;
 
-export default counterSlice.reducer;
+export default userSlice.reducer;

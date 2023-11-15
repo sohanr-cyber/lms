@@ -2,7 +2,7 @@ import React from "react";
 import styles from "@/styles/Form.module.css";
 import { useRouter } from "next/router";
 import { divisions } from "@/data";
-const ProgramForm = () => {
+const ProgramForm = ({ openForm, setOpenForm }) => {
   const router = useRouter();
   return (
     <div className={styles.wrapper}>

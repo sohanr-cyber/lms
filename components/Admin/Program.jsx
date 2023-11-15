@@ -1,30 +1,67 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import styles from "../../styles/Admin/Table.module.css";
 import slugify from "slugify";
 import Image from "next/image";
 import { useRouter } from "next/router";
 import Form from "./Forms/Form";
 import ProgramForm from "./Forms/ProgramForm";
+import axios from "axios";
 
 const icon = "https://cdn-icons-png.flaticon.com/128/1050/1050453.png";
 
-const Program = ({ title, data, member }) => {
+const Program = ({ title, member }) => {
   const router = useRouter();
+  const [list, setList] = useState([]);
+  const [openForm, setOpenForm] = useState(false);
 
   const handleAction = () => {
     return;
   };
+
+  const fetchSection = async () => {
+    try {
+      const { data } = await axios.get("/api/division");
+      setList(data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  const fetchProgram = async () => {
+    try {
+      const { data } = await axios.get("/api/program");
+      setList(data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const fetchCourse = async () => {
+    try {
+      const { data } = await axios.get("/api/program");
+      setList(data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const handleClick = () => {};
+
+  useEffect(() => {
+    router.query.current == "division"
+      ? fetchSection()
+      : router.query.current == "program"
+      ? fetchProgram()
+      : router.query.current == "course"
+      ? fetchCourse()
+      : fetchSection();
+  }, [router.query]);
 
   console.log(router.query);
   return (
     <div className={styles.wrapper}>
       <div className={styles.flex}>
         <h2>{title}</h2>
-        <h2
-          div
-          className={styles.new}
-          onClick={() => router.push("/admin?create=division")}
-        >
+        <h2 div className={styles.new} onClick={() => setOpenForm(true)}>
           +
         </h2>
       </div>
@@ -40,7 +77,7 @@ const Program = ({ title, data, member }) => {
             </tr>
           </thead>
           <tbody>
-            {data.map((item, index) => (
+            {list?.map((item, index) => (
               <tr key={index}>
                 <td>{item.title}</td>
                 {member && <td>Literature</td>}
@@ -50,7 +87,12 @@ const Program = ({ title, data, member }) => {
                     : "Sed ut perspiciatis unde omnis iste ..."}
                 </td>
                 <td style={{ textAlign: "center" }}>
-                  <Image src={icon} width="30" height="30" alt={item.title} />
+                  <Image
+                    src={item.image}
+                    width="30"
+                    height="30"
+                    alt={item.title}
+                  />
                 </td>
 
                 <td
@@ -63,7 +105,7 @@ const Program = ({ title, data, member }) => {
                   {/* Add your action button or link here */}
                   <div className={styles.btn}>
                     <span onClick={() => handleAction(item)}>Update</span>
-                    <span onClick={() => handleAction(item)}>Delete</span>
+                    <span onClick={() => deteteAction(item._id)}>Delete</span>
                   </div>
                 </td>
               </tr>
@@ -71,9 +113,17 @@ const Program = ({ title, data, member }) => {
           </tbody>
         </table>
       </div>
-      {router.query.create == "division" && (
+      {openForm && (
         <div className={styles.form}>
-          <ProgramForm />
+          {router.query.current == "division" ? (
+            <Form setOpenForm={setOpenForm} />
+          ) : router.query.current == "program" ? (
+            <ProgramForm setOpenForm={setOpenForm} />
+          ) : router.query.current == "course" ? (
+            <ProgramForm setOpenForm={setOpenForm} />
+          ) : (
+            <Form setOpenForm={setOpenForm} />
+          )}
         </div>
       )}
     </div>
