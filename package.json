@@ -13,7 +13,6 @@
     "@emotion/styled": "^11.11.0",
     "@mui/icons-material": "^5.14.16",
     "@mui/material": "^5.14.17",
-    "@next/font": "14.0.1",
     "@react-oauth/google": "^0.11.1",
     "@reduxjs/toolkit": "^1.9.7",
     "@upstash/redis": "^1.25.1",

@@ -2,34 +2,84 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    min-height: 400px;
-    /* background-color: rgb(205, 235, 247); */
+    min-height: 100vh;
+    flex-direction: column;
+    padding: 70px 25px
+        /* gap: 15px; */
+        /* background-color: rgb(205, 235, 247); */
+}
+
+.wrapper .logo {
+    margin: 20px 0
+}
+
+.wrapper p {
+    text-align: center;
+    /* margin-top: 25px; */
+}
+
+.wrapper .form {
+    /* border: 1px solid lightgrey; */
+    border-radius: 5px;
+    margin: 35px 0;
+    background-color: white;
+    ;
 }
 
 .wrapper form {
     display: flex;
     flex-direction: column;
     gap: 10px;
-    border: 1px solid lightgrey;
-    padding: 10px
+    padding: 10px;
+    margin: 10px 0;
 }
 
+
+.wrapper .form .flex {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    border-bottom: 1px solid lightgrey;
+    color: black
+}
+
+.wrapper .route {
+    padding: 9px 0;
+    cursor: pointer;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+}
+
+
+
 .wrapper input {
-    padding: 5px;
+    padding: 9px;
     border-radius: 5px;
     border: 1px solid lightgrey
 }
 
-.wrapper form .btn {
-    padding: 5px;
-    border-radius: 5px;
+.wrapper .form .btn {
+    padding: 9px;
     border: 1px solid lightgrey;
     text-align: center;
     background-color: var(--btn);
     cursor: pointer;
     color: white;
+    margin-top: 10px;
+    border-radius: 0 0 0 5px
 }
 
+.wrapper .box {
+    padding: 10px;
+    border-radius: 5px;
+    background-color: antiquewhite;
+}
 
-
-
+@media (max-width: 570px) {
+    .wrapper {
+        padding: 60px 15px;
+    }
+}

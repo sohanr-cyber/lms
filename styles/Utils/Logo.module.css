@@ -1,0 +1,10 @@
+.logo {
+    font-weight: bold;
+    font-size: 150%;
+    /* color: rgb(0, 229, 255); */
+    cursor: pointer;
+    background: -webkit-linear-gradient(45deg, aqua, rgb(235, 87, 235));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    display: inline-block;
+}
