@@ -16,7 +16,8 @@ handler.get(async (req, res) => {
       await db.connect();
       const divisions = await Division.find({});
       await redisClient.setex("divisions", 3600, JSON.stringify(divisions));
-      res.status(200).json({ divisions });
+      res.status(200).json(divisions);
+      await db.disconne
     }
   } catch (error) {
     console.log(error);
@@ -53,25 +54,6 @@ handler.post(async (req, res) => {
   } catch (error) {
     console.log(error);
     return res.status(500).json({ message: "Failed To create" });
-  }
-});
-
-handler.get(async (req, res) => {
-  try {
-    const cachedDivisions = await redisClient.get("divisions");
-    if (cachedDivisions) {
-      //   const divisions = JSON.parse(cachedDivisions);
-      console.log(cachedDivisions);
-      res.status(200).json(cachedDivisions);
-    } else {
-      await db.connect();
-      const divisions = await Division.find({});
-      await redisClient.setex("divisions", 3600, JSON.stringify(divisions));
-      res.status(200).json(divisions);
-    }
-  } catch (error) {
-    console.log(error);
-    res.status(500).json({ error: "Internal Server Error" });
   }
 });
 

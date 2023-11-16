@@ -1,22 +1,14 @@
-import Program from "@/components/Admin/Program";
 import React from "react";
-import slugify from "slugify";
-import { divisions } from "@/data";
 import AdminHeading from "@/components/Admin/AdminHeading";
-
-import { useRouter } from "next/router";
 import Section from "@/components/Admin/Section";
 import axios from "axios";
 import url from "@/configure";
 
-
 const Admin = ({ data }) => {
-  const router = useRouter();
-  const current = router.query.current;
   return (
     <>
       <AdminHeading />
-      <div style={{ minHeight: "400px" }}>
+      <div style={{ minHeight: "100vh" }}>
         <Section title={"Division"} data={data} />
       </div>
     </>
@@ -25,9 +17,7 @@ const Admin = ({ data }) => {
 
 export default Admin;
 
-export async function getServerSideProps({ query }) {
-  const { slug } = query;
-
+export async function getServerSideProps() {
   const fetchData = async () => {
     const { data } = await axios.get(`${url}/api/division`);
     return data;

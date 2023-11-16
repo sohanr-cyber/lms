@@ -98,9 +98,9 @@ const Register = () => {
         </div>
         <form>
           <input
-            type="Email"
+            type="Name"
             placeholder="Enter Your Name"
-            value={userInfo.email}
+            value={userInfo.name}
             onChange={(e) => setUserInfo({ ...userInfo, name: e.target.value })}
           />
           <input
