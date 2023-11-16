@@ -17,7 +17,7 @@ handler.get(async (req, res) => {
       const divisions = await Division.find({});
       await redisClient.setex("divisions", 3600, JSON.stringify(divisions));
       res.status(200).json(divisions);
-      await db.disconne
+    
     }
   } catch (error) {
     console.log(error);
