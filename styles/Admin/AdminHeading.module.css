@@ -20,10 +20,9 @@
     gap: 15px;
     align-items: flex-start;
     border-radius: 5px;
-    border: 1px solid lightgrey;
     padding: 10px;
     min-width: 180px;
-    background-color: aliceblue;
+    background-color: rgb(255, 255, 255);
     cursor: pointer;
     ;
 }

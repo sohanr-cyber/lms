@@ -10,39 +10,13 @@ import { useSelector } from "react-redux";
 
 const icon = "https://cdn-icons-png.flaticon.com/128/1050/1050453.png";
 
-const Section = ({ title, member }) => {
+const Section = ({ title, data }) => {
   const router = useRouter();
   const [list, setList] = useState([]);
   const [openForm, setOpenForm] = useState(false);
   const userInfo = useSelector((state) => state.user.userInfo);
   const handleAction = () => {
     return;
-  };
-
-  const fetchSection = async () => {
-    try {
-      const { data } = await axios.get("/api/division");
-      setList(data);
-    } catch (error) {
-      console.log(error);
-    }
-  };
-  const fetchProgram = async () => {
-    try {
-      const { data } = await axios.get("/api/program");
-      setList(data);
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
-  const fetchCourse = async () => {
-    try {
-      const { data } = await axios.get("/api/program");
-      setList(data);
-    } catch (error) {
-      console.log(error);
-    }
   };
 
   const handleDeleteAction = async (id) => {
@@ -59,10 +33,6 @@ const Section = ({ title, member }) => {
       console.log(error);
     }
   };
-
-  useEffect(() => {
-    fetchSection();
-  }, [router.query]);
 
   console.log(router.query);
   return (
@@ -88,49 +58,48 @@ const Section = ({ title, member }) => {
             </tr>
           </thead>
           <tbody>
-            {list.length > 0 &&
-              list?.map((item, index) => (
-                <tr key={index}>
-                  <td>{item.title}</td>
-                  <td>
-                    {item.description && item.description.length > 50
-                      ? `${item.description.substring(0, 50)}...`
-                      : item.description}
-                  </td>
-                  <td style={{ textAlign: "center" }}>
-                    <Image
-                      src={item.image}
-                      width="30"
-                      height="30"
-                      alt={item.title}
-                    />
-                  </td>
+            {data?.map((item, index) => (
+              <tr key={index}>
+                <td>{item.title}</td>
+                <td>
+                  {item.description && item.description.length > 50
+                    ? `${item.description.substring(0, 50)}...`
+                    : item.description}
+                </td>
+                <td style={{ textAlign: "center" }}>
+                  <Image
+                    src={item.image}
+                    width="30"
+                    height="30"
+                    alt={item.title}
+                  />
+                </td>
 
-                  <td
-                  //   style={{
-                  //     display: "flex",
-                  //     gap: "15px",
-                  //     justifyContent: "space-evenly",
-                  //   }}
-                  >
-                    {/* Add your action button or link here */}
-                    <div className={styles.btn}>
-                      <span
-                        onClick={() =>
-                          router.push(
-                            `/admin/section/form?slug=${slugify(item.slug)}`
-                          )
-                        }
-                      >
-                        Update
-                      </span>
-                      <span onClick={() => handleDeleteAction(item._id)}>
-                        Delete
-                      </span>
-                    </div>
-                  </td>
-                </tr>
-              ))}
+                <td
+                //   style={{
+                //     display: "flex",
+                //     gap: "15px",
+                //     justifyContent: "space-evenly",
+                //   }}
+                >
+                  {/* Add your action button or link here */}
+                  <div className={styles.btn}>
+                    <span
+                      onClick={() =>
+                        router.push(
+                          `/admin/section/form?slug=${slugify(item.slug)}`
+                        )
+                      }
+                    >
+                      Update
+                    </span>
+                    <span onClick={() => handleDeleteAction(item._id)}>
+                      Delete
+                    </span>
+                  </div>
+                </td>
+              </tr>
+            ))}
           </tbody>
         </table>
       </div>

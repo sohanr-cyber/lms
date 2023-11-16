@@ -6,15 +6,13 @@ import { useDispatch, useSelector } from "react-redux";
 import { finishLoading, startLoading } from "@/redux/stateSlice";
 import Loading from "@/components/utils/Loading";
 import Upload from "@/components/utils/Upload";
+import url from "@/configure";
 
-const Form = ({ openForm, setOpenForm }) => {
+const Form = ({ openForm, setOpenForm, data }) => {
   const dispatch = useDispatch();
   const router = useRouter();
-  const [division, setDivision] = useState({
-    title: "",
-    description: "",
-    image: "",
-  });
+  console.log({ data });
+  const [division, setDivision] = useState(data);
 
   const loading = useSelector((state) => state.state.loading);
   const userInfo = useSelector((state) => state.user.userInfo);
@@ -28,11 +26,17 @@ const Form = ({ openForm, setOpenForm }) => {
     }
   };
 
-  useEffect(() => {
-    if (router.query.slug) {
-      fetch(router.query.slug);
-    }
-  }, [router.query.slug]);
+  // useEffect(() => {
+  //   if (router.query.slug) {
+  //     fetch(router.query.slug);
+  //   }
+  // }, [router.query.slug]);
+
+  // useEffect(() => {
+  //   if (userInfo?.user.role != "admin") {
+  //     router.push("/");
+  //   }
+  // }, []);
 
   const handleSubmit = async () => {
     try {
@@ -130,3 +134,31 @@ const Form = ({ openForm, setOpenForm }) => {
 };
 
 export default Form;
+
+export async function getServerSideProps({ query }) {
+  const { slug } = query;
+
+  const fetchData = async () => {
+    const { data } = await axios.get(`${url}/api/division/${slug}`);
+    return data;
+  };
+
+  if (slug) {
+    const data = await fetchData();
+    return {
+      props: {
+        data,
+      },
+    };
+  }
+
+  return {
+    props: {
+      data: {
+        title: "",
+        description: "",
+        image: "",
+      },
+    },
+  };
+}

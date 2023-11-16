@@ -53,6 +53,7 @@ const Login = () => {
       });
 
       dispatch(login(data));
+      router.push("/");
     } catch (error) {
       console.log(error);
     }
