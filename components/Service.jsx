@@ -4,6 +4,7 @@ import Image from "next/image";
 import { useRouter } from "next/router";
 import slugify from "slugify";
 import { divisions } from "@/data";
+import Logo from "./utils/Logo";
 
 const data = [
   {
@@ -48,13 +49,13 @@ const data = [
 
 const icon = "https://cdn-icons-png.flaticon.com/128/1050/1050453.png";
 
-const Service = () => {
+const Service = ({ data }) => {
   const router = useRouter();
   return (
     <div className={styles.wrapper}>
-      <h2>Our Programe at SchoolPress</h2>
+      <h2>What We Offer Here</h2>
       <div className={styles.flex}>
-        {[...divisions].map((item, index) => (
+        {[...data].map((item, index) => (
           <div
             className={styles.item}
             key={index}
@@ -63,7 +64,7 @@ const Service = () => {
             <div className={styles.imageContainer}>
               <Image
                 priority
-                src={icon}
+                src={item.image}
                 width={50}
                 height={50}
                 alt={item.title}
@@ -71,10 +72,7 @@ const Service = () => {
             </div>
             <div className={styles.right}>
               <div className={styles.title}>{item.title}</div>
-              <div className={styles.details}>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                eiusmod tempor incididunt ut labore et dolore magna
-              </div>
+              <div className={styles.details}>{item.description}</div>
             </div>
           </div>
         ))}

@@ -63,3 +63,19 @@
     background-color: var(--redBtn);
     color: white
 }
+
+.items .item {
+    border: 1px solid grey;
+    border-radius: 5px;
+    padding: 3px 5px;
+    margin: 5px 0;
+    margin-right: 5px;
+    cursor: pointer;
+    display: inline-block;
+}
+
+.items {
+    margin: 10px 0;
+    display: block;
+
+}

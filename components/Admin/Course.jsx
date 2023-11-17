@@ -3,24 +3,19 @@ import styles from "../../styles/Admin/Table.module.css";
 import slugify from "slugify";
 import Image from "next/image";
 import { useRouter } from "next/router";
-
 import axios from "axios";
 import { useSelector } from "react-redux";
 
 const icon = "https://cdn-icons-png.flaticon.com/128/1050/1050453.png";
 
-const Section = ({ title, data }) => {
+const Course = ({ title, data }) => {
   const router = useRouter();
   const [list, setList] = useState(data);
-  const [openForm, setOpenForm] = useState(false);
   const userInfo = useSelector((state) => state.user.userInfo);
-  const handleAction = () => {
-    return;
-  };
 
-  const fetchSection = async () => {
+  const fetchCourse = async () => {
     try {
-      const { data } = await axios.get("/api/division");
+      const { data } = await axios.get("/api/course");
       setList(data);
     } catch (error) {
       console.log(error);
@@ -29,28 +24,28 @@ const Section = ({ title, data }) => {
 
   const handleDeleteAction = async (id) => {
     try {
-      const { data } = await axios.delete(`/api/division?id=${id}`, {
+      const { data } = await axios.delete(`/api/course?id=${id}`, {
         headers: {
           Authorization: "Bearer " + userInfo.token,
         },
       });
+      
       if (data) {
-        fetchSection();
+        fetchCourse();
       }
     } catch (error) {
       console.log(error);
     }
   };
 
-  console.log(router.query);
   return (
     <div className={styles.wrapper}>
       <div className={styles.flex}>
-        <h2>{title}</h2>
+        <h2>Coruses</h2>
         <h2
           div
           className={styles.new}
-          onClick={() => router.push("/admin/section/form?new=true")}
+          onClick={() => router.push("/admin/course/form?new=true")}
         >
           +
         </h2>
@@ -83,12 +78,19 @@ const Section = ({ title, data }) => {
                   />
                 </td>
 
-                <td>
+                <td
+                //   style={{
+                //     display: "flex",
+                //     gap: "15px",
+                //     justifyContent: "space-evenly",
+                //   }}
+                >
+                  {/* Add your action button or link here */}
                   <div className={styles.btn}>
                     <span
                       onClick={() =>
                         router.push(
-                          `/admin/section/form?slug=${slugify(item.slug)}`
+                          `/admin/course/form?slug=${slugify(item.slug)}`
                         )
                       }
                     >
@@ -108,4 +110,4 @@ const Section = ({ title, data }) => {
   );
 };
 
-export default Section;
+export default Course;

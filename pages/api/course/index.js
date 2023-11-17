@@ -17,7 +17,6 @@ handler.get(async (req, res) => {
     } else {
       await db.connect();
       const courses = await Course.find({});
-      console.log({ courses });
       await redisClient.setex("courses", 3600, JSON.stringify(courses));
       res.status(200).json(courses);
     }
@@ -31,7 +30,7 @@ handler.use(isAuth, isAdmin);
 // only admin can create this
 handler.post(async (req, res) => {
   try {
-    const { title, image, description, programID } = req.body;
+    const { title, image, description, program } = req.body;
     if (!title || !description) {
       return res
         .status(400)
@@ -42,7 +41,7 @@ handler.post(async (req, res) => {
       title,
       image,
       description,
-      program: programID,
+      program,
       slug: slugify(title),
     });
     await newCourse.save();
@@ -65,4 +64,27 @@ handler.post(async (req, res) => {
 
 
 
+handler.delete(async (req, res) => {
+  try {
+    const id = req.query.id;
+    if (!id) {
+      return res.status(400).json({ error: "id must be provided" });
+    }
+    await db.connect();
+    await Course.findByIdAndDelete(id);
+    await db.disconnect();
+    let cached = await redisClient.get("courses");
+    if (cached) {
+      await redisClient.setex(
+        "courses",
+        3600,
+        JSON.stringify(cached.filter((item) => item._id != id))
+      );
+    }
+    return res.status(201).json({ message: "Succesfully deleted" });
+  } catch (error) {
+    console.log(error);
+    return res.status(500).json({ message: "Failed To Delete" });
+  }
+});
 export default handler;

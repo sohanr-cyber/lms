@@ -1,5 +1,4 @@
-import Faculty from "@/components/Faculty";
-import Heading from "@/components/Heading";
+
 import Members from "@/components/Members";
 import Recommend from "@/components/Recommend";
 import { divisions } from "@/data";
@@ -33,4 +32,7 @@ export async function getServerSideProps({ query }) {
     },
   };
 }
+
+
+
 export default faculty;

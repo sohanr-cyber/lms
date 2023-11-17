@@ -70,21 +70,6 @@ const Admin = () => {
   return (
     <>
       <AdminHeading />
-      <div style={{ minHeight: "400px" }}>
-        {router.query.current == "program" ? (
-          <Program title={"Program"} data={data} />
-        ) : (
-          (router.query.current = "division" ? (
-            <Program title={"Division"} data={data} />
-          ) : (
-            (router.query.current = "course" ? (
-              <Program title={"Course"} data={data} />
-            ) : (
-              <Program title={"Division"} data={data} />
-            ))
-          ))
-        )}
-      </div>
     </>
   );
 };

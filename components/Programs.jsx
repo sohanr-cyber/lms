@@ -5,7 +5,7 @@ import slugify from "slugify";
 const icon = "https://cdn-icons-png.flaticon.com/128/1050/1050453.png";
 
 import { useRouter } from "next/router";
-const Faculty = ({ data, background, program, title }) => {
+const Programs = ({ data, background, program, title }) => {
   const router = useRouter();
   return (
     <div
@@ -32,13 +32,14 @@ const Faculty = ({ data, background, program, title }) => {
           >
             <Image
               priority
-              src={icon}
+              src={item.image || icon}
               width={50}
               height={50}
               alt={item.title}
             />
             <div className={styles.title}>{item.title}</div>
             {/* <div className={styles.code}>({item.code})</div> */}
+            <div className={styles.description}>{item.description}</div>
           </div>
         ))}
       </div>
@@ -46,4 +47,4 @@ const Faculty = ({ data, background, program, title }) => {
   );
 };
 
-export default Faculty;
+export default Programs;

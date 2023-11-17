@@ -5,6 +5,8 @@ import styles from "@/styles/Home.module.css";
 import Header from "@/components/Header";
 import Service from "@/components/Service";
 import Recommend from "@/components/Recommend";
+import axios from "axios";
+import url from "@/configure";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -27,11 +29,11 @@ const courses = [
   },
 ];
 
-export default function Home() {
+export default function Home({ data }) {
   return (
     <>
       <Header />
-      <Service />
+      <Service data={data} />
       <Recommend
         recommended={"true"}
         title="Recommended Course For You"
@@ -58,4 +60,19 @@ export default function Home() {
       />
     </>
   );
+}
+
+export async function getServerSideProps() {
+  const fetchData = async () => {
+    const { data } = await axios.get(`${url}/api/division`);
+    return data;
+  };
+
+  const data = await fetchData();
+
+  return {
+    props: {
+      data,
+    },
+  };
 }

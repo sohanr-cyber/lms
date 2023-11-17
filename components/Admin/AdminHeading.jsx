@@ -7,7 +7,7 @@ import { useRouter } from "next/router";
 
 const data = [
   {
-    title: "Division",
+    title: "Section",
     count: "3",
   },
   {
@@ -38,7 +38,7 @@ const AdminHeading = () => {
             key={each}
             className={styles.item}
             onClick={() =>
-              router.push(`/admin?current=${slugify(item.title.toLowerCase())}`)
+              router.push(`/admin/${item.title.toLocaleLowerCase()}`)
             }
           >
             <Image
