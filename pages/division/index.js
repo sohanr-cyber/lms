@@ -1,7 +1,7 @@
 import React from "react";
 import styles from "@/styles/Faculty.module.css";
 import Heading from "@/components/Heading";
-import Faculty from "@/components/Faculty";
+import Service from "@/components/Service";
 const data = [
   {
     title: "Applied Langustic and ELT",
@@ -40,7 +40,7 @@ const divisions = () => {
   return (
     <div>
       <Heading title={"Faculty"} />
-      <Faculty data={data} title={"Program We Offer"} />
+      <Service data={data} title={"Program We Offer"} />
     </div>
   );
 };
