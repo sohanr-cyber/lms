@@ -67,7 +67,7 @@ export async function getServerSideProps() {
     const { data } = await axios.get(`${url}/api/division`);
     return data;
   };
-y
+
   const data = await fetchData();
 
   return {
