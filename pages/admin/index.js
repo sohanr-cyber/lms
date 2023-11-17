@@ -1,4 +1,3 @@
-import Program from "@/components/Admin/Program";
 import React from "react";
 import slugify from "slugify";
 import { divisions } from "@/data";
