@@ -30,6 +30,7 @@
     "mongoose": "^8.0.0",
     "next": "14.0.1",
     "next-connect": "^0.10.1",
+    "next-seo": "^6.4.0",
     "nextjs-progressbar": "^0.0.16",
     "nodemailer": "^6.9.7",
     "react": "18.2.0",

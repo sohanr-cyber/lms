@@ -7,6 +7,7 @@ import Service from "@/components/Service";
 import Recommend from "@/components/Recommend";
 import axios from "axios";
 import url from "@/configure";
+import { NextSeo } from "next-seo";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -29,9 +30,67 @@ const courses = [
   },
 ];
 
+const site = "https://schoolpress.vercel.app/";
+const title = "Schoolpress - Your Learning Journey Begins Here!";
+const description =
+  "choolPress, the leading online Learning Management System (LMS) empowering educators and learners. Explore interactive courses, analytics, and collaborative tools for a holistic learning experience.";
 export default function Home({ data, recommended, popular }) {
   return (
     <>
+      <NextSeo
+        title={title}
+        description={description}
+        openGraph={{
+          type: "website",
+          url: site,
+          title: title,
+          description: description,
+          images: [
+            {
+              url: "/images/schoolpress.png",
+              width: 1200,
+              height: 630,
+              alt: "schoolpress",
+            },
+          ],
+        }}
+        twitter={{
+          handle: "@schoolpress",
+          site: "@schoolpress",
+          cardType: "summary_large_image",
+          title: title,
+          description: description,
+          image: "/images/schoolpress.png",
+        }}
+        jsonLd={{
+          "@context": "https://schema.org",
+          "@type": "Organization",
+          name: "Quince",
+          legalName: "Quince Software Solutions, Inc.",
+          url: "https://www.Quince.com",
+          logo: "https://www.Quince.com/Quince.jpg",
+          foundingDate: "Year Founded",
+          sameAs: [
+            "https://www.facebook.com/schoolpress",
+            "https://twitter.com/schoolpress",
+            "https://www.linkedin.com/company/schoolpreses",
+          ],
+          address: {
+            "@type": "PostalAddress",
+            streetAddress: "123 Main Street",
+            addressLocality: "City",
+            addressRegion: "State",
+            postalCode: "ZIP Code",
+            addressCountry: "Country",
+          },
+          contactPoint: {
+            "@type": "ContactPoint",
+            telephone: "+1-123-456-7890",
+            contactType: "customer service",
+          },
+          description: description,
+        }}
+      />
       <Header />
       <Service data={data} />
       <Recommend
