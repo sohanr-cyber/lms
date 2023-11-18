@@ -39,26 +39,23 @@ handler.put(async (req, res) => {
       { $set: req.body },
       { new: true }
     );
-
     let cached = await redisClient.get(slug);
     if (cached) {
       await redisClient.setex(slug, 3600, JSON.stringify(updated));
-      let courses = await redisClient.get("courses");
-      if (courses) {
-        const indexToUpdate = courses.findIndex(
-          (obj) => obj._id == updated._id
-        );
-        console.log(indexToUpdate);
-        courses[indexToUpdate] = updated;
-        await redisClient.setex("courses", 3600, JSON.stringify(courses));
-      }
     }
-
+    let courses = await redisClient.get("courses");
+    if (courses) {
+      const indexToUpdate = courses.findIndex((obj) => obj._id == updated._id);
+      console.log(indexToUpdate);
+      courses[indexToUpdate] = updated;
+      await redisClient.setex("courses", 3600, JSON.stringify(courses));
+    }
     return res.status(200).json(updated);
   } catch (error) {
     console.log(error);
     return res.status(500).json({ error: "Internal Server Error" });
   }
 });
+
 
 export default handler;

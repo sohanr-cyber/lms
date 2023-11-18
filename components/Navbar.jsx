@@ -11,10 +11,18 @@ import { divisions } from "@/data";
 
 const routes = [
   { name: "Home", route: "/" },
-  ...divisions.map((item) => ({
-    name: item.title,
-    route: `/division/${slugify(item.title)}`,
-  })),
+  {
+    name: "Language and Literature Program",
+    route: `division/${slugify(slugify("Language and Literature Program"))}`,
+  },
+  {
+    name: "ICT",
+    route: `/division/${slugify("ICT")}`,
+  },
+  {
+    name: "General Science",
+    route: `/division/${slugify("General Science")}`,
+  },
   { name: "Admin", route: "/admin" },
 ];
 

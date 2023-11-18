@@ -10,9 +10,9 @@ const contentschema = new mongoose.Schema(
       type: String,
       required: true,
     },
-    content: {
-      type: Schema.Types.ObjectId,
-      ref: "Content", // Reference to the User model (instructor)
+    course: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Course", // Reference to the User model (instructor)
       required: true,
     },
     description: {

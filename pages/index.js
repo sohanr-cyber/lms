@@ -29,7 +29,7 @@ const courses = [
   },
 ];
 
-export default function Home({ data }) {
+export default function Home({ data, recommended, popular }) {
   return (
     <>
       <Header />
@@ -37,13 +37,13 @@ export default function Home({ data }) {
       <Recommend
         recommended={"true"}
         title="Recommended Course For You"
-        courses={courses}
+        courses={recommended}
       />
       <Recommend
         recommended={false}
         title={"Popular  Course For HSC & SSC"}
         background={"lightblue"}
-        courses={courses}
+        courses={popular}
       />
       <Recommend
         recommended={false}
@@ -68,11 +68,25 @@ export async function getServerSideProps() {
     return data;
   };
 
+  const fetchRecommended = async () => {
+    const { data } = await axios.get(`${url}/api/course/recommended`);
+    return data;
+  };
+
+  const fetchPopular = async () => {
+    const { data } = await axios.get(`${url}/api/course/popular`);
+    return data;
+  };
+
   const data = await fetchData();
+  const recommended = await fetchRecommended();
+  const popular = await fetchPopular();
 
   return {
     props: {
       data,
+      recommended,
+      popular,
     },
   };
 }

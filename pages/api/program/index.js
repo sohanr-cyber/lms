@@ -69,14 +69,27 @@ handler.delete(async (req, res) => {
       return res.status(400).json({ error: "id must be provided" });
     }
     await db.connect();
-    await Division.findByIdAndDelete(id);
+    const result = await Program.findByIdAndDelete(id);
+    console.log({ result: result.division.toString() });
     await db.disconnect();
     let cached = await redisClient.get("programs");
+
+    let cachedByDivision = await redisClient.get(
+      `programs:${result.division.toString()}`
+    );
     if (cached) {
       await redisClient.setex(
         "programs",
         3600,
         JSON.stringify(cached.filter((item) => item._id != id))
+      );
+    }
+
+    if (cachedByDivision) {
+      await redisClient.setex(
+        `programs:${result.division.toString()}`,
+        3600,
+        JSON.stringify(cachedByDivision.filter((item) => item._id != id))
       );
     }
     return res.status(201).json({ message: "Succesfully deleted" });

@@ -31,6 +31,7 @@ const courseSchema = new mongoose.Schema(
   { timestamps: true }
 );
 
+
 const Program =
   mongoose.models.Program || mongoose.model("Program", courseSchema);
 export default Program;

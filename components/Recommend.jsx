@@ -20,13 +20,19 @@ const Recommend = ({ recommended, title, background, courses }) => {
           <div
             className={styles.item}
             key={index}
-            onClick={() =>
-              router.push(
-                `/faculty/${slugify(item.title)}/${slugify(item.title)}`
-              )
-            }
+            onClick={() => {
+              router.query.program
+                ? router.push(
+                    `/division/${router.query.slug}/${
+                      router.query.program
+                    }/${slugify(item.title)}`
+                  )
+                : router.push(
+                    `/division/program/course/${slugify(item.title)}`
+                  );
+            }}
             style={{
-              backgroundImage: `url(${icon})`,
+              backgroundImage: `url(${item.image || icon})`,
               backgroundPosition: "center",
               backgroundRepeat: "no-repeat",
             }}

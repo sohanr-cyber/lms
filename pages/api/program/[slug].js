@@ -43,17 +43,16 @@ handler.put(async (req, res) => {
     let cached = await redisClient.get(slug);
     if (cached) {
       await redisClient.setex(slug, 3600, JSON.stringify(updated));
-      let programs = await redisClient.get("programs");
-      if (programs) {
-        const indexToUpdate = programs.findIndex(
-          (obj) => obj._id == updated._id
-        );
-        console.log(indexToUpdate);
-        programs[indexToUpdate] = updated;
-        await redisClient.setex("programs", 3600, JSON.stringify(programs));
-      }
     }
 
+    
+    let programs = await redisClient.get("programs");
+    if (programs) {
+      const indexToUpdate = programs.findIndex((obj) => obj._id == updated._id);
+      console.log(indexToUpdate);
+      programs[indexToUpdate] = updated;
+      await redisClient.setex("programs", 3600, JSON.stringify(programs));
+    }
     return res.status(200).json(updated);
   } catch (error) {
     console.log(error);

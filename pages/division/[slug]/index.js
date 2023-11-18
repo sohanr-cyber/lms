@@ -25,8 +25,9 @@ export async function getServerSideProps({ query }) {
   };
 
   const fetchPrograms = async (division) => {
+    console.log({ division });
     const { data } = await axios.get(
-      `${url}/api/program/division?id=${division._id}`
+      `${url}/api/program/division?division=${division._id}`
     );
     return data;
   };

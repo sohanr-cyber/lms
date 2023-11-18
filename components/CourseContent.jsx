@@ -4,7 +4,8 @@ import PlayCircleIcon from "@mui/icons-material/PlayCircle";
 import { useRouter } from "next/router";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import InnerContnet from "./InnerContnet";
-const CourseContent = ({ data }) => {
+
+const CourseContent = ({ data, course }) => {
   const router = useRouter();
   const [open, setOpen] = useState({});
 
@@ -12,7 +13,14 @@ const CourseContent = ({ data }) => {
     <div className={styles.wrapper}>
       <div className={styles.space}>
         <h2>Table Of Content</h2>
-        <div className={styles.new}>+</div>
+        <div
+          className={styles.new}
+          onClick={() =>
+            router.push(`/admin/content/form?course=${course._id}`)
+          }
+        >
+          +
+        </div>
       </div>
       <div className={styles.flex}>
         {data.map((item, index) => (
@@ -33,7 +41,16 @@ const CourseContent = ({ data }) => {
                 {index + 1}.{item.title}
               </div>
               <div className={styles.icons}>
-                <div className={styles.new}>+</div>
+                <div
+                  className={styles.new}
+                  onClick={() =>
+                    router.push(
+                      `/admin/content/form?course=${course._id}&content=${item._id}`
+                    )
+                  }
+                >
+                  +
+                </div>
                 <div
                   className={styles.play}
                   onClick={() => (open == item ? setOpen(null) : setOpen(item))}

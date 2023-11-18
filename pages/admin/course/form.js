@@ -8,12 +8,12 @@ import Loading from "@/components/utils/Loading";
 import Upload from "@/components/utils/Upload";
 import url from "@/configure";
 
-const Form = ({ data }) => {
+const Form = ({ data, programs }) => {
   const dispatch = useDispatch();
   const router = useRouter();
   console.log({ data });
   const [course, setCourse] = useState(data);
-  const [list, setList] = useState([]);
+  const [list, setList] = useState(programs);
   const loading = useSelector((state) => state.state.loading);
   const userInfo = useSelector((state) => state.user.userInfo);
   const handleSubmit = async () => {
@@ -66,19 +66,6 @@ const Form = ({ data }) => {
     }
   };
 
-  const fetchProgram = async () => {
-    try {
-      const { data } = await axios.get("/api/program");
-      setList(data);
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
-  useEffect(() => {
-    fetchProgram();
-  }, []);
-
   const handleFile = (file) => {
     console.log({ file });
     setCourse({ ...course, image: file.image });
@@ -116,6 +103,38 @@ const Form = ({ data }) => {
           }
           value={course.description}
         />
+        <div className={styles.items}>
+          <span
+            className={styles.item}
+            onClick={() =>
+              setCourse({ ...course, isRecommended: !course.isRecommended })
+            }
+            style={
+              course.isRecommended
+                ? {
+                    background: "grey",
+                  }
+                : {}
+            }
+          >
+            Recommended
+          </span>
+          <span
+            className={styles.item}
+            onClick={() =>
+              setCourse({ ...course, isPopular: !course.isPopular })
+            }
+            style={
+              course.isPopular
+                ? {
+                    background: "grey",
+                  }
+                : {}
+            }
+          >
+            Popular
+          </span>
+        </div>
         <Upload handle={handleFile} />
         <div className={styles.flex}>
           <div
@@ -150,11 +169,20 @@ export async function getServerSideProps({ query }) {
     return data;
   };
 
+  const fetchProgram = async () => {
+    const { data } = await axios.get(`${url}/api/program`);
+    return data;
+  };
+
+  const programs = await fetchProgram();
+
   if (slug) {
     const data = await fetchData();
+
     return {
       props: {
         data,
+        programs,
       },
     };
   }
@@ -166,7 +194,10 @@ export async function getServerSideProps({ query }) {
         description: "",
         image: "",
         division: {},
+        isPopular: false,
+        isRecommended: false,
       },
+      programs,
     },
   };
 }

@@ -4,12 +4,14 @@ import slugify from "slugify";
 import Image from "next/image";
 import { useRouter } from "next/router";
 import axios from "axios";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { finishLoading, startLoading } from "@/redux/stateSlice";
 
 const icon = "https://cdn-icons-png.flaticon.com/128/1050/1050453.png";
 
 const Course = ({ title, data }) => {
   const router = useRouter();
+  const dispatch = useDispatch();
   const [list, setList] = useState(data);
   const userInfo = useSelector((state) => state.user.userInfo);
 
@@ -24,16 +26,19 @@ const Course = ({ title, data }) => {
 
   const handleDeleteAction = async (id) => {
     try {
+      dispatch(startLoading());
       const { data } = await axios.delete(`/api/course?id=${id}`, {
         headers: {
           Authorization: "Bearer " + userInfo.token,
         },
       });
-      
+
       if (data) {
         fetchCourse();
       }
+      dispatch(finishLoading());
     } catch (error) {
+      dispatch(finishLoading());
       console.log(error);
     }
   };

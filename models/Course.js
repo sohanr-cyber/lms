@@ -25,7 +25,7 @@ const courseSchema = new mongoose.Schema(
       type: Boolean,
       default: false,
     },
-    isRecomended: {
+    isRecommended: {
       type: Boolean,
       default: false,
     },
