@@ -1,5 +1,5 @@
-import { NextResponse } from "next/server";
-// import { NextResponse } from "next/dist/server/web/spec-extension/response";
+// import { NextResponse } from "next/server";
+import { NextResponse } from "next/dist/server/web/spec-extension/response";
 import url from "./configure";
 
 export default function middleware(req) {
@@ -11,7 +11,6 @@ export default function middleware(req) {
     return NextResponse.redirect(`${url}/login`);
   }
 
-  //loged in but not admin
   if (
     verify &&
     JSON.parse(verify.value).user.role != "admin" &&
