@@ -33,7 +33,7 @@ const courses = [
 const site = "https://schoolpress.vercel.app/";
 const title = "Schoolpress - Your Learning Journey Begins Here!";
 const description =
-  "choolPress, the leading online Learning Management System (LMS) empowering educators and learners. Explore interactive courses, analytics, and collaborative tools for a holistic learning experience.";
+  "SchoolPress, the leading online Learning Management System (LMS) empowering educators and learners. Explore interactive courses, analytics, and collaborative tools for a holistic learning experience.";
 export default function Home({ data, recommended, popular }) {
   return (
     <>
