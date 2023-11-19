@@ -81,18 +81,33 @@ handler.post(async (req, res) => {
 handler.delete(async (req, res) => {
   try {
     const id = req.query.id;
+    const course = req.query.course;
+    console.log({ id, course });
+
     if (!id) {
       return res.status(400).json({ error: "id must be provided" });
     }
     await db.connect();
-    await Course.findByIdAndDelete(id);
+    await Content.deleteOne({ _id: id });
     await db.disconnect();
     let cached = await redisClient.get("courses");
+    // const key = `contentOfCourse:${req.body.course}`;
     if (cached) {
       await redisClient.setex(
         "courses",
         3600,
         JSON.stringify(cached.filter((item) => item._id != id))
+      );
+    }
+
+    const key2 = `contentsOfCourse:${course}`;
+    const cached2 = await redisClient.get(key2);
+    console.log(cached2);
+    if (cached2) {
+      await redisClient.setex(
+        key2,
+        3600,
+        JSON.stringify(cached2.filter((item) => item._id != id))
       );
     }
 

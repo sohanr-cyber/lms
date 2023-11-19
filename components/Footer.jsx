@@ -5,6 +5,7 @@ import LinkedInIcon from "@mui/icons-material/LinkedIn";
 import InstagramIcon from "@mui/icons-material/Instagram";
 import slugify from "slugify";
 import { useRouter } from "next/router";
+import Link from "next/link";
 
 const routes = [
   {
@@ -83,11 +84,18 @@ const Footer = () => {
           Call us: <span>+8859723593</span>
         </div>
         <div className={styles.call}>
-          Mail us: <span>support@schoolpress.com</span>
+          Mail Us :&nbsp;
+          <span>
+            <Link href="mailto:schoolpressedu@gmail.com">
+              schoolpressedu@gmail.com
+            </Link>
+          </span>
         </div>
         <div className={styles.socialLinks}>
           <div className={styles.icon}>
-            <FacebookIcon />
+            <Link href="https://www.facebook.com/profile.php?id=61553304039945">
+              <FacebookIcon />
+            </Link>
           </div>
           <div className={styles.icon}>
             <LinkedInIcon />

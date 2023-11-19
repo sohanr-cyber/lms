@@ -28,11 +28,25 @@
     min-height: 220px;
     color: white;
     text-align: left;
+    position: relative;
 }
 
-.wrapper .flex .item:hover {
-    border: 1px solid black;
+
+.wrapper .flex .item::after {
+    content: "";
+    background: linear-gradient(rgb(0, 0, 0, 0.1), rgb(0, 0, 0, 0.8));
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    position: absolute;
 }
+
+.wrapper .flex .item .title {
+    z-index: 1;
+}
+
+.wrapper .flex .item:hover {}
 
 .flex .item .title {
     font-weight: bold;

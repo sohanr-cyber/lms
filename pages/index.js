@@ -33,7 +33,7 @@ const courses = [
 const site = "https://schoolpress.vercel.app/";
 const title = "Schoolpress - Your Learning Journey Begins Here!";
 const description =
-  "SchoolPress, the leading online Learning Management System (LMS) empowering educators and learners. Explore interactive courses, analytics, and collaborative tools for a holistic learning experience.";
+  "choolPress, the leading online Learning Management System (LMS) empowering educators and learners. Explore interactive courses, analytics, and collaborative tools for a holistic learning experience.";
 export default function Home({ data, recommended, popular }) {
   return (
     <>
@@ -101,20 +101,20 @@ export default function Home({ data, recommended, popular }) {
       <Recommend
         recommended={false}
         title={"Popular  Course For HSC & SSC"}
-        background={"lightblue"}
+        background={"aliceblue"}
         courses={popular}
       />
       <Recommend
         recommended={false}
         title={"Popular ICT Course For You"}
-        background={"lightgrey"}
+        background={"skyblue"}
         courses={courses}
       />
 
       <Recommend
         recommended={false}
         title={"Popular English Literature Course For You"}
-        background={"skyblue"}
+        background={"aliceblue"}
         courses={courses}
       />
     </>

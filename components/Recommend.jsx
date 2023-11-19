@@ -7,14 +7,14 @@ import slugify from "slugify";
 const icon =
   "https://images.pexels.com/photos/5496461/pexels-photo-5496461.jpeg?auto=compress&cs=tinysrgb&w=400";
 
-const Recommend = ({ recommended, title, background, courses }) => {
+const Recommend = ({ recommended, title, background, courses, color }) => {
   const router = useRouter();
   return (
     <div
       className={styles.wrapper}
       style={background ? { background: background } : {}}
     >
-      <h2>{title}</h2>
+      <h2 style={color ? { color: color } : {}}>{title}</h2>
       <div className={styles.flex}>
         {courses?.map((item, index) => (
           <div

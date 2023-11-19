@@ -13,7 +13,7 @@ const routes = [
   { name: "Home", route: "/" },
   {
     name: "Language and Literature Program",
-    route: `division/${slugify(slugify("Language and Literature Program"))}`,
+    route: `/division/${slugify(slugify("Language and Literature Program"))}`,
   },
   {
     name: "ICT",
