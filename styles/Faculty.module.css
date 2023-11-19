@@ -63,12 +63,12 @@
 
     .wrapper .flex .item {
         display: flex;
-        min-height: none;
         max-height: 60px;
         gap: 10px;
         padding: 5px;
         min-width: 100%;
         align-items: center;
+        min-height: 60px;
     }
 
     .wrapper .flex .item .title {
