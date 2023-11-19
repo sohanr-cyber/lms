@@ -6,7 +6,7 @@ import Link from "next/link";
 const Chat = () => {
   return (
     <div className={styles.wrapper}>
-      <Link href="https://wa.me/01723215558?text=hey,wanna learn about schoolpress !">
+      <Link href="https://wa.me/+88017235558?text=hey,wanna learn about schoolpress !">
         <WhatsAppIcon style={{ fontSize: "230%" }} />
       </Link>
     </div>
