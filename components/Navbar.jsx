@@ -73,7 +73,7 @@ const Navbar = () => {
         {isClient && (
           <>
             <div className={styles.items}>
-              {userInfo.user.role == "admin" && (
+              {userInfo?.user.role == "admin" && (
                 <div onClick={() => router.push("/admin")}>
                   <AdminPanelSettingsIcon />
                 </div>
@@ -94,7 +94,7 @@ const Navbar = () => {
               ) : (
                 <div
                   className={styles.contact}
-                  onclick={() => router.push("/login")}
+                  onClick={() => router.push("/login")}
                 >
                   Sign In
                 </div>
