@@ -11,7 +11,7 @@ const handler = nc();
 
 handler.get(async (req, res) => {
   try {
-    let cached = await redisClient.get("courses:popular");
+    let cached = null; // await redisClient.get("courses:popular");
     if (cached) {
       res.status(200).json(cached);
     } else {

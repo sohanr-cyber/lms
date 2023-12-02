@@ -70,7 +70,9 @@ const InnerContnet = ({ background, content, description, contentId }) => {
                 <CreateIcon
                   onClick={() =>
                     router.push(
-                      `/admin/subContent/form?subContentId=${item._id}&content=${content}`
+                      `/admin/subContent/form?subContentId=${item._id}&content=${content}`,
+                      undefined,
+                      { shallow: true }
                     )
                   }
                 />
@@ -93,6 +95,5 @@ const InnerContnet = ({ background, content, description, contentId }) => {
     </div>
   );
 };
-
 
 export default InnerContnet;
