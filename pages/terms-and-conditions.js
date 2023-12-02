@@ -1,5 +1,6 @@
 import React from "react";
 import styles from "../styles/Terms.module.css";
+
 const termsAndConditions = [
   {
     section: "Acceptance of Terms",

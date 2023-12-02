@@ -12,16 +12,20 @@ const handler = nc();
 handler.get(async (req, res) => {
   try {
     const slug = req.query.slug;
-    // let cached = await redisClient.get("courses");
-    // if (cached) {
-    //   res.status(200).json(cached);
-    // } else {
     await db.connect();
     const program = await Program.findOne({ slug: slug });
-    const courses = await Course.find({ program: program._id });
-    await redisClient.setex("courses", 3600, JSON.stringify(courses));
-    res.status(200).json(courses);
-    // }
+    let cached = await redisClient.get(`coursesOfProgram:${program._id}`);
+    if (cached) {
+      res.status(200).json(cached);
+    } else {
+      const courses = await Course.find({ program: program._id });
+      await redisClient.setex(
+        `coursesOfProgram:${program._id}`,
+        3600,
+        JSON.stringify(courses)
+      );
+      res.status(200).json(courses);
+    }
   } catch (error) {
     console.log(error);
     res.status(500).json({ error: "Internal Server Error" });

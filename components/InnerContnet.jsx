@@ -94,4 +94,5 @@ const InnerContnet = ({ background, content, description, contentId }) => {
   );
 };
 
+
 export default InnerContnet;

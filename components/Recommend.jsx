@@ -16,37 +16,48 @@ const Recommend = ({ recommended, title, background, courses, color }) => {
     >
       <h2 style={color ? { color: color } : {}}>{title}</h2>
       <div className={styles.flex}>
-        {courses?.map((item, index) => (
-          <div
-            className={styles.item}
-            key={index}
-            onClick={() => {
-              router.query.program
-                ? router.push(
-                    `/division/${router.query.slug}/${
-                      router.query.program
-                    }/${slugify(item.title)}`
-                  )
-                : router.push(
-                    `/division/program/course/${slugify(item.title)}`
-                  );
-            }}
-            style={{
-              backgroundImage: `url(${item.image || icon})`,
-              backgroundPosition: "center",
-              backgroundRepeat: "no-repeat",
-            }}
-          >
-            {/* <Image
+        {courses.length > 0 ? (
+          courses?.map((item, index) => (
+            <div
+              className={styles.item}
+              key={index}
+              onClick={() => {
+                router.query.program
+                  ? router.push(
+                      `/division/${router.query.slug}/${
+                        router.query.program
+                      }/${slugify(item.title)}`
+                    )
+                  : router.push(
+                      `/division/program/course/${slugify(item.title)}`
+                    );
+              }}
+              style={{
+                backgroundImage: `url(${item.image || icon})`,
+                backgroundPosition: "center",
+                backgroundRepeat: "no-repeat",
+              }}
+            >
+              {/* <Image
               priority
               src={item.icon}
               width={50}
               height={50}
               alt={item.title}
             /> */}
-            <div className={styles.title}>{item.title}</div>
+              <div className={styles.title}>{item.title}</div>
+            </div>
+          ))
+        ) : (
+          <div className={styles.imageContainer}>
+            <Image
+              src="/images/empty-box.png"
+              alt="Currently Don't have any Item"
+              width={300}
+              height={300}
+            />
           </div>
-        ))}
+        )}
       </div>
     </div>
   );

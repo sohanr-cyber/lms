@@ -1,5 +1,4 @@
 .wrapper {
-    background: rgb(255, 249, 255);
     padding: 25px;
     display: flex;
     align-items: center;
@@ -15,29 +14,34 @@
     flex-direction: column;
     gap: 10px;
     width: 100%;
-    margin-top: 30px
+    margin-top: 30px;
+    max-width: 400px;
+    background-color: white;
+    padding: 15px;
+    border-radius: 5px;
 }
 
 .wrapper input,
 .wrapper textarea,
 .wrapper select,
 .wrapper option {
-    padding: 5px;
+    padding: 9px;
     border-radius: 5px;
-    border: 1px solid grey;
     background-color: transparent;
     width: 100%;
+    border: 1px solid lightgrey;
+    ;
 }
 
 .wrapper form label {
-    color: rgb(75, 75, 75);
+    color: rgb(59, 59, 59);
     font-size: 95%;
 }
 
 
 .wrapper textarea {
     min-height: 100px;
-    /* resize: none; */
+    resize: none;
 }
 
 .wrapper form .flex {
@@ -49,19 +53,20 @@
 
 .wrapper form .flex .btn {
     border: 1px solid lightgrey;
-    padding: 5px;
-    border-radius: 5px;
+    padding: 9px;
+    /* border-radius: 5px; */
     background-color: var(--btn);
-    min-width: 100px;
+    /* min-width: 100px; */
     text-align: center;
     cursor: pointer;
     color: white;
-    /* width: 45%; */
+    width: 100%;
 }
 
 .wrapper form .flex .btn:nth-child(2) {
     background-color: var(--redBtn);
-    color: white
+    color: white;
+    border-radius: 0px 5px 5px 0;
 }
 
 .items .item {

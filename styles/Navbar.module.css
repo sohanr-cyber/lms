@@ -72,8 +72,13 @@
     z-index: 5;
 }
 
-.close {
+.close,
+.logout {
     cursor: pointer;
+}
+
+.logout {
+    color: red
 }
 
 @media (max-width: 720px) {

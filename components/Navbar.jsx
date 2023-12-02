@@ -6,8 +6,9 @@ import { useRouter } from "next/router";
 import slugify from "slugify";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import Image from "next/image";
-import { useSelector } from "react-redux";
-import { divisions } from "@/data";
+import { useSelector, useDispatch } from "react-redux";
+import LogoutIcon from "@mui/icons-material/Logout";
+import AdminPanelSettingsIcon from "@mui/icons-material/AdminPanelSettings";
 
 const routes = [
   { name: "Home", route: "/" },
@@ -23,7 +24,6 @@ const routes = [
     name: "General Science",
     route: `/division/${slugify("General Science")}`,
   },
-  { name: "Admin", route: "/admin" },
 ];
 
 const icon = "https://cdn-icons-png.flaticon.com/128/1050/1050453.png";
@@ -32,6 +32,7 @@ const Navbar = () => {
   const router = useRouter();
   const userInfo = useSelector((state) => state.user.userInfo);
   const [isClient, setIsClient] = useState(false);
+  const dispatch = useDispatch();
   useEffect(() => {
     setIsClient(true);
   }, []);
@@ -70,13 +71,36 @@ const Navbar = () => {
       </div>
       <div className={styles.right}>
         {isClient && (
-          <div className={styles.items}>
-            {userInfo ? (
-              <div className={styles.name}>{userInfo.user.name}</div>
-            ) : (
-              <div className={styles.contact}>Contact</div>
-            )}
-          </div>
+          <>
+            <div className={styles.items}>
+              {userInfo.user.role == "admin" && (
+                <div onClick={() => router.push("/admin")}>
+                  <AdminPanelSettingsIcon />
+                </div>
+              )}
+              {userInfo ? (
+                <>
+                  {" "}
+                  <div className={styles.name}>{userInfo.user.name}</div>
+                  {/* <div
+                className={styles.logout}
+                onClick={() => {
+                  dispatch(logout());
+                }}
+              >
+                <LogoutIcon />
+              </div> */}
+                </>
+              ) : (
+                <div
+                  className={styles.contact}
+                  onclick={() => router.push("/login")}
+                >
+                  Sign In
+                </div>
+              )}
+            </div>
+          </>
         )}
       </div>
       <div className={styles.menuIcon}>

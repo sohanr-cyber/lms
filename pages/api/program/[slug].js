@@ -4,6 +4,7 @@ import db from "@/utils/db";
 import nc from "next-connect";
 import redisClient from "@/utils/redis";
 import Program from "@/models/Program";
+import slugify from "slugify";
 
 const handler = nc();
 
@@ -11,17 +12,20 @@ const handler = nc();
 handler.get(async (req, res) => {
   try {
     const slug = req.query.slug;
-    let cached = await redisClient.get(slug);
+    let cached = await redisClient.get(`program:${slug}`);
+    console.log({ cached });
     if (cached) {
       res.status(200).json(cached);
     } else {
       await db.connect();
-      const programs = await Program.findOne({ slug }).populate({
-        path: "division",
-        select: "title _id", // Select only title and _id of the 'division' field
-      });
-      await redisClient.setex(slug, 3600, JSON.stringify(programs));
-      res.status(200).json(programs);
+      const program = await Program.findOne({ slug })
+        .populate({
+          path: "division",
+          select: "title _id", // Select only title and _id of the 'division' field
+        })
+        .populate({ path: "instructors", select: "name image rank" });
+      await redisClient.setex(`program:${slug}`, 3600, JSON.stringify(program));
+      res.status(200).json(program);
     }
   } catch (error) {
     console.log(error);
@@ -36,7 +40,7 @@ handler.put(async (req, res) => {
     await db.connect();
     const updated = await Program.findOneAndUpdate(
       { slug },
-      { $set: req.body },
+      { $set: { ...req.body, slug: slugify(req.body.title) } },
       { new: true }
     );
 
@@ -45,7 +49,6 @@ handler.put(async (req, res) => {
       await redisClient.setex(slug, 3600, JSON.stringify(updated));
     }
 
-    
     let programs = await redisClient.get("programs");
     if (programs) {
       const indexToUpdate = programs.findIndex((obj) => obj._id == updated._id);
@@ -57,6 +60,42 @@ handler.put(async (req, res) => {
   } catch (error) {
     console.log(error);
     return res.status(500).json({ error: "Internal Server Error" });
+  }
+});
+
+// add memeber to a program
+handler.post(async (req, res) => {
+  try {
+    const slug = req.query.slug;
+    await db.connect();
+    const updated = await Program.findOneAndUpdate(
+      { slug },
+      {
+        $set: {
+          instructors: req.body.instructors,
+        },
+      },
+      {
+        new: true,
+      }
+    );
+
+    const program = await Program.findOne({ slug })
+      .populate({
+        path: "division",
+        select: "title _id",
+      })
+      .populate({ path: "instructors", select: "name image rank" });
+      
+    let cached = await redisClient.get(`program:${slug}`);
+    if (cached) {
+      await redisClient.setex(`program:${slug}`, 3600, JSON.stringify(program));
+    }
+    console.log(program);
+    res.status(200).send(program.instructors);
+  } catch (error) {
+    console.log(error);
+    res.status(500).send(error);
   }
 });
 

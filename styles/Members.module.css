@@ -2,6 +2,19 @@
     padding: 50px 25px;
     text-align: center;
     min-height: 600px;
+    position: relative;
+}
+
+
+.add {
+    background-color: var(--btn);
+    max-width: 200px;
+    display: inline-block;
+    padding: 5px 9px;
+    border-radius: 5px;
+    margin: 10px 0;
+    cursor: pointer;
+    color: white;
 }
 
 .flex {

@@ -48,8 +48,12 @@ const Upload = ({ handle }) => {
     );
   };
   return (
-    <div className={styles.container}>
+    <div
+      className={styles.container}
+      style={{ width: "100%", background: "lightgrey", borderRadius: "5px" }}
+    >
       {uploading && <ProgressBar value={progresspercent} />}
+
       <input
         type="file"
         className={styles.inputfile}
@@ -57,6 +61,7 @@ const Upload = ({ handle }) => {
           setFile(e.target.files[0]);
           handleFile(e.target.files[0]);
         }}
+        style={uploading ? { display: "none" } : { display: "block" }}
       />
     </div>
   );

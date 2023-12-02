@@ -67,10 +67,11 @@ const Admin = () => {
   const router = useRouter();
   const current = router.query.current;
   return (
-    <>
+    <div style={{ minHeight: "720px" }}>
       <AdminHeading />
-    </>
+    </div>
   );
 };
+
 
 export default Admin;

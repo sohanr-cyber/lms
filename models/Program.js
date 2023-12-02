@@ -21,7 +21,7 @@ const courseSchema = new mongoose.Schema(
     description: {
       type: String,
     },
-    instructor: [
+    instructors: [
       {
         type: mongoose.Schema.Types.ObjectId,
         ref: "User", // Reference to the User model (instructor)
@@ -30,7 +30,6 @@ const courseSchema = new mongoose.Schema(
   },
   { timestamps: true }
 );
-
 
 const Program =
   mongoose.models.Program || mongoose.model("Program", courseSchema);

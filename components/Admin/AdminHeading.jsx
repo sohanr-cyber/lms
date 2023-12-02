@@ -19,6 +19,11 @@ const data = [
     count: "34",
   },
   {
+    title: "user",
+    count: "33",
+  },
+
+  {
     title: "Content",
     count: "145",
   },

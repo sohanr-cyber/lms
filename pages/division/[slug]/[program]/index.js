@@ -14,7 +14,7 @@ const course = ({ data, p }) => {
       <Heading data={p} />
 
       <Recommend recommended={false} title={"Course For You"} courses={data} />
-      <Members />
+      <Members members={p.instructors || []} />
     </>
   );
 };
@@ -25,7 +25,7 @@ export async function getServerSideProps({ query }) {
 
   const response = await axios.get(`${url}/api/program/${program}`);
   const p = response.data;
-
+  console.log({ p });
   return {
     props: {
       data,

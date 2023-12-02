@@ -9,6 +9,7 @@ import CreateIcon from "@mui/icons-material/Create";
 import DeleteIcon from "@mui/icons-material/Delete";
 import AddIcon from "@mui/icons-material/Add";
 import { useSelector } from "react-redux";
+import Image from "next/image";
 
 const CourseContent = ({ contents, course }) => {
   const router = useRouter();
@@ -57,76 +58,99 @@ const CourseContent = ({ contents, course }) => {
         </div>
       </div>
       <div className={styles.flex}>
-        {data.map((item, index) => (
-          <>
-            <div
-              className={styles.item}
-              key={index}
-              // style={
-              //   index % 2 == 0
-              //     ? {
-              //         background: "purple",
-              //         color: "white",
-              //       }
-              //     : { background: "white" }
-              // }
-            >
-              <div className={styles.title}>
-                {index + 1}.{item.title}
-              </div>
-              <div className={styles.icons}>
-                <div
-                  className={styles.icon}
-                  onClick={() =>
-                    router.push(`/admin/subContent/form?content=${item._id}`)
-                  }
-                >
-                  <AddIcon />
+        {data.length > 0 ? (
+          data.map((item, index) => (
+            <>
+              <div
+                className={styles.item}
+                key={index}
+                // style={
+                //   index % 2 == 0
+                //     ? {
+                //         background: "purple",
+                //         color: "white",
+                //       }
+                //     : { background: "white" }
+                // }
+              >
+                <div className={styles.title}>
+                  {index + 1}.{item.title}
                 </div>
-                <div
-                  className={styles.icon}
-                  onClick={() =>
-                    router.push(
-                      `/admin/content/form?course=${course._id}&content=${item._id}`
-                    )
-                  }
-                >
-                  <CreateIcon />
-                </div>
+                <div className={styles.icons}>
+                  <div
+                    className={styles.icon}
+                    onClick={() =>
+                      router.push(`/admin/subContent/form?content=${item._id}`)
+                    }
+                  >
+                    <AddIcon />
+                  </div>
+                  <div
+                    className={styles.icon}
+                    onClick={() =>
+                      router.push(
+                        `/admin/content/form?course=${course._id}&content=${item._id}`
+                      )
+                    }
+                  >
+                    <CreateIcon />
+                  </div>
 
-                <div className={styles.icon} onClick={() => handleDelete(item)}>
-                  <DeleteIcon />
-                </div>
-                <div
-                  className={styles.play}
-                  // onClick={() => (open == item ? setOpen(null) : setOpen(item))}
-                  onClick={() => {
-                    router.query.content == item._id
-                      ? router.push(
-                          `/${router.asPath.split("?")[0]}`,
-                          undefined,
-                          { shallow: true }
-                        )
-                      : router.push(
-                          `/${router.asPath.split("?")[0]}?content=${item._id}`
-                        );
-                  }}
-                >
-                  <KeyboardArrowDownIcon />
+                  <div
+                    className={styles.icon}
+                    onClick={() => handleDelete(item)}
+                  >
+                    <DeleteIcon />
+                  </div>
+                  <div
+                    className={styles.play}
+                    // onClick={() => (open == item ? setOpen(null) : setOpen(item))}
+                    onClick={() => {
+                      router.query.content == item._id
+                        ? router.push(
+                            `/${router.asPath.split("?")[0]}`,
+                            undefined,
+                            { shallow: true }
+                          )
+                        : router.push(
+                            `/${router.asPath.split("?")[0]}?content=${
+                              item._id
+                            }`
+                          );
+                    }}
+                  >
+                    <KeyboardArrowDownIcon />
+                  </div>
                 </div>
               </div>
-            </div>
-            {router.query.content == item._id && (
-              <div className={styles.details}>
-                <InnerContnet
-                  content={router.query.content}
-                  background={index % 2 == 0 ? true : null}
-                  description={item.description}
-                />
-              </div>
-            )}
-          </>
-        ))}
+              {router.query.content == item._id && (
+                <div className={styles.details}>
+                  <InnerContnet
+                    content={router.query.content}
+                    background={index % 2 == 0 ? true : null}
+                    description={item.description}
+                  />
+                </div>
+              )}
+            </>
+          ))
+        ) : (
+          <div
+            className={styles.imageContainer}
+            style={{
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+            }}
+          >
+            <Image
+              src="/images/404-error.png"
+              width={350}
+              height={350}
+              alt="Don't have any content currently"
+            />
+          </div>
+        )}
       </div>
     </div>
   );
