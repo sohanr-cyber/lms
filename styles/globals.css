@@ -1,5 +1,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Ubuntu&display=swap');
 
+::selection {
+  background-color: yellow;
+  color: black
+}
+
 :root {
   /* --max-width: 1100px;
   --border-radius: 12px;

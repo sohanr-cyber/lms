@@ -11,6 +11,7 @@ import Link from "next/link";
 import Logo from "@/components/utils/Logo";
 import { useRouter } from "next/router";
 import { finishLoading, startLoading } from "@/redux/stateSlice";
+import Upload from "@/components/utils/Upload";
 
 const Register = () => {
   const dispatch = useDispatch();
@@ -31,10 +32,15 @@ const Register = () => {
     flow: "auth-code",
   });
 
+  const handleImage = async (media) => {
+    setUserInfo((prev) => ({ ...prev, image: media.image }));
+  };
+
   const [userInfo, setUserInfo] = useState({
     password: "",
     email: "",
     name: "",
+    image: "",
   });
 
   const validateEmail = (email) => {
@@ -125,6 +131,7 @@ const Register = () => {
               setUserInfo({ ...userInfo, password: e.target.value })
             }
           />
+          <Upload handle={handleImage} />
         </form>
 
         <div className={styles.btn} onClick={() => authLogin()}>

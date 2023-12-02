@@ -81,7 +81,14 @@ const Navbar = ({ section }) => {
               {userInfo ? (
                 <>
                   {" "}
-                  <div className={styles.name}>{userInfo.user.name}</div>
+                  <div className={styles.name}>
+                    <Image
+                      src={userInfo.user.image}
+                      width="35"
+                      height="35"
+                      alt={userInfo.name}
+                    />
+                  </div>
                   <div
                     className={styles.logout}
                     onClick={() => {
@@ -128,29 +135,55 @@ const Navbar = ({ section }) => {
               }}
             />
           </div>
-          {routes.map((item, index) => (
+          <div
+            className={styles.item}
+            onClick={() => router.push("/")}
+            style={router.asPath == "/" ? { color: "purple" } : {}}
+          >
+            Home
+          </div>
+          {section.map((item, index) => (
             <div
               className={styles.item}
               key={index}
-              onClick={() => router.push(item.route)}
-              style={
-                router.query.slug == slugify(item.name)
-                  ? { color: "purple" }
-                  : {}
-              }
+              onClick={() => {
+                router.push(`/division/${item.slug}`);
+                setMobileView(false);
+              }}
+              style={router.query.slug == item.slug ? { color: "purple" } : {}}
             >
-              {item.name}
+              {item.title}
             </div>
           ))}
 
           {!userInfo ? (
-            <div className={styles.item}>Sign In</div>
+            <div
+              className={styles.item}
+              onClick={() => {
+                router.push("/login");
+                setMobileView(false);
+              }}
+            >
+              Sign In
+            </div>
           ) : (
             <>
-              <div className={styles.item} onClick={() => dispatch(logout())}>
+              <div
+                className={styles.item}
+                onClick={() => {
+                  dispatch(logout());
+                  setMobileView(false);
+                }}
+              >
                 <LogoutIcon />
               </div>
-              <div className={styles.item} onClick={() => router.push("/admin")}>
+              <div
+                className={styles.item}
+                onClick={() => {
+                  router.push("/admin");
+                  setMobileView(false);
+                }}
+              >
                 <AdminPanelSettingsIcon />
               </div>
             </>

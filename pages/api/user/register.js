@@ -10,7 +10,7 @@ const handler = nc();
 
 handler.post(async (req, res) => {
   try {
-    const { name, email, pic, password } = req.body;
+    const { name, email, pic, password, image } = req.body;
     const hash = bcrypt.hashSync(password, 10);
 
     await db.connect();
@@ -19,6 +19,7 @@ handler.post(async (req, res) => {
       name,
       email,
       pic,
+      image,
       password: hash,
       slug: slugify(name),
     });

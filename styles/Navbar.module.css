@@ -55,6 +55,11 @@
 }
 
 
+.name img {
+    border-radius: 50%;
+    overflow: hidden;
+}
+
 .mobileItems {
     position: fixed;
     top: 0;
