@@ -11,7 +11,7 @@ export default function CircularIndeterminate() {
         right: "0",
         height: "100%",
         width: "100%",
-        zIndex: "3",
+        zIndex: "4",
         display: "flex",
         justifyContent: "center",
         alignItems: "center",

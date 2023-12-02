@@ -7,44 +7,18 @@ import slugify from "slugify";
 import { useRouter } from "next/router";
 import Link from "next/link";
 
-const routes = [
-  {
-    name: "General Science (6-12)",
-    route: `/faculty/${slugify("General Science (6-12)")}`,
-  },
-  {
-    name: "Enlgish Literature",
-    route: `/faculty/${slugify("Enlgish Literature")}`,
-  },
-  {
-    name: "Cultural Studies",
-    route: `/faculty/${slugify("Cultural Studies")}`,
-  },
-  // {
-  //   name: "Applied Langustic And ELT",
-  //   route: `/faculty/${slugify("Applied Langustic And ELT")}`,
-  // },
-  // {
-  //   name: "Bangla Literature And Grammer",
-  //   route: `/faculty/${slugify("Bangla Literature And Grammer")}`,
-  // },
-  {
-    name: "Information And Technology",
-    route: `/faculty/${slugify("Information And Technology")}`,
-  },
-];
-const Footer = () => {
+const Footer = ({ section }) => {
   const router = useRouter();
   return (
     <div className={styles.wrapper}>
       <div className={styles.left}>
         <h3 className={styles.logo}>SchoolPress</h3>
         <p>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-          eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
-          minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-          aliquip ex ea commodo consequat. Duis aute irure dolor in
-          reprehenderit in.
+          SchoolPress is a forward-thinking Learning Management System
+          revolutionizing education. Our intuitive platform empowers educators,
+          engages students, and streamlines learning with customizable paths,
+          robust analytics, and seamless communication. Join us in shaping the
+          future of education with SchoolPress
         </p>
       </div>
       <div className={styles.mid}>

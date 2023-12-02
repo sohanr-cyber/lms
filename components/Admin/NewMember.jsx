@@ -2,13 +2,16 @@ import React, { useState, useEffect } from "react";
 import styles from "@/styles/Admin/NewMember.module.css";
 import axios from "axios";
 import Image from "next/image";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { useRouter } from "next/router";
+import { finishLoading, startLoading } from "@/redux/stateSlice";
 const NewMember = ({ members }) => {
   const [selected, setSelected] = useState(members);
   const [allUsers, setAllUsers] = useState([]);
   const userInfo = useSelector((state) => state.user.userInfo);
   const router = useRouter();
+  const dispatch = useDispatch();
+  
   console.log({ selected });
   useEffect(() => {
     fetch();
@@ -16,6 +19,7 @@ const NewMember = ({ members }) => {
 
   const addInstructors = async () => {
     try {
+      dispatch(startLoading());
       const { data } = await axios.post(
         `/api/program/${router.query.program}`,
         {
@@ -27,10 +31,13 @@ const NewMember = ({ members }) => {
           },
         }
       );
+      dispatch(finishLoading());
+
       if (data) {
         router.back();
       }
     } catch (error) {
+      dispatch(finishLoading());
       console.log(error);
     }
   };

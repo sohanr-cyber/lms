@@ -9,6 +9,8 @@ import Image from "next/image";
 import { useSelector, useDispatch } from "react-redux";
 import LogoutIcon from "@mui/icons-material/Logout";
 import AdminPanelSettingsIcon from "@mui/icons-material/AdminPanelSettings";
+import { AnimatePresence, motion } from "framer-motion";
+import { logout } from "@/redux/userSlice";
 
 const routes = [
   { name: "Home", route: "/" },
@@ -28,7 +30,7 @@ const routes = [
 
 const icon = "https://cdn-icons-png.flaticon.com/128/1050/1050453.png";
 
-const Navbar = () => {
+const Navbar = ({ section }) => {
   const router = useRouter();
   const userInfo = useSelector((state) => state.user.userInfo);
   const [isClient, setIsClient] = useState(false);
@@ -45,16 +47,14 @@ const Navbar = () => {
         SchoolPress
       </div>
       <div className={styles.items}>
-        {routes.map((item, index) => (
+        {section.map((item, index) => (
           <div
             className={styles.item}
             key={index}
-            onClick={() => router.push(item.route)}
-            style={
-              router.query.slug == slugify(item.name) ? { color: "purple" } : {}
-            }
+            onClick={() => router.push(`/division/${item.slug}`)}
+            style={router.query.slug == item.slug ? { color: "purple" } : {}}
           >
-            {item.name}
+            {item.title}
             {/* {item.arr && <KeyboardArrowDownIcon style={{ fontSize: "100%" }} />}
             {item.arr && (
               <div className={styles.more}>
@@ -82,14 +82,14 @@ const Navbar = () => {
                 <>
                   {" "}
                   <div className={styles.name}>{userInfo.user.name}</div>
-                  {/* <div
-                className={styles.logout}
-                onClick={() => {
-                  dispatch(logout());
-                }}
-              >
-                <LogoutIcon />
-              </div> */}
+                  <div
+                    className={styles.logout}
+                    onClick={() => {
+                      dispatch(logout());
+                    }}
+                  >
+                    <LogoutIcon />
+                  </div>
                 </>
               ) : (
                 <div
@@ -112,31 +112,50 @@ const Navbar = () => {
       </div>
 
       {mobileView && (
-        <>
-          <div className={styles.mobileItems}>
-            <div className={styles.close}>
-              <CloseIcon
-                onClick={() => {
-                  setMobileView(false);
-                }}
-              />
-            </div>
-            {routes.map((item, index) => (
-              <div
-                className={styles.item}
-                key={index}
-                onClick={() => router.push(item.route)}
-                style={
-                  router.query.slug == slugify(item.name)
-                    ? { color: "purple" }
-                    : {}
-                }
-              >
-                {item.name}
-              </div>
-            ))}
+        <motion.div
+          initial={{
+            x: "1000px",
+          }}
+          animate={{ x: "0" }}
+          exit={{ x: "0" }}
+          transition={{ duration: 1 }}
+          className={styles.mobileItems}
+        >
+          <div className={styles.close}>
+            <CloseIcon
+              onClick={() => {
+                setMobileView(false);
+              }}
+            />
           </div>
-        </>
+          {routes.map((item, index) => (
+            <div
+              className={styles.item}
+              key={index}
+              onClick={() => router.push(item.route)}
+              style={
+                router.query.slug == slugify(item.name)
+                  ? { color: "purple" }
+                  : {}
+              }
+            >
+              {item.name}
+            </div>
+          ))}
+
+          {!userInfo ? (
+            <div className={styles.item}>Sign In</div>
+          ) : (
+            <>
+              <div className={styles.item} onClick={() => dispatch(logout())}>
+                <LogoutIcon />
+              </div>
+              <div className={styles.item} onClick={() => router.push("/admin")}>
+                <AdminPanelSettingsIcon />
+              </div>
+            </>
+          )}
+        </motion.div>
       )}
     </div>
   );

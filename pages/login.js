@@ -10,6 +10,7 @@ import { login } from "@/redux/userSlice";
 import Link from "next/link";
 import Logo from "@/components/utils/Logo";
 import { useRouter } from "next/router";
+import { finishLoading, startLoading } from "@/redux/stateSlice";
 const Login = () => {
   const log = useGoogleLogin({
     onSuccess: async (codeResponse) => {
@@ -48,13 +49,16 @@ const Login = () => {
     }
 
     try {
+      dispatch(startLoading());
       const { data } = await axios.post("/api/user/login", {
         ...userInfo,
       });
 
       dispatch(login(data));
+      dispatch(finishLoading())
       router.push("/");
     } catch (error) {
+      dispatch(finishLoading())
       console.log(error);
     }
   };

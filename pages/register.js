@@ -10,6 +10,7 @@ import { login } from "@/redux/userSlice";
 import Link from "next/link";
 import Logo from "@/components/utils/Logo";
 import { useRouter } from "next/router";
+import { finishLoading, startLoading } from "@/redux/stateSlice";
 
 const Register = () => {
   const dispatch = useDispatch();
@@ -52,12 +53,16 @@ const Register = () => {
     }
 
     try {
+      dispatch(startLoading());
       const { data } = await axios.post("/api/user/register", {
         ...userInfo,
       });
       console.log(data);
       dispatch(login(data));
+      dispatch(finishLoading());
+      router.push("/");
     } catch (error) {
+      dispatch(finishLoading());
       console.log(error);
     }
   };

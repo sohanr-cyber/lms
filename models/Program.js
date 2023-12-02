@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 
-const courseSchema = new mongoose.Schema(
+const programSchema = new mongoose.Schema(
   {
     division: {
       type: mongoose.Schema.Types.ObjectId,
@@ -32,5 +32,5 @@ const courseSchema = new mongoose.Schema(
 );
 
 const Program =
-  mongoose.models.Program || mongoose.model("Program", courseSchema);
+  mongoose.models.Program || mongoose.model("Program", programSchema);
 export default Program;
