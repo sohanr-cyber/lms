@@ -11,6 +11,7 @@ const description =
   "choolPress, the leading online Learning Management System (LMS) empowering educators and learners. Explore interactive courses, analytics, and collaborative tools for a holistic learning experience.";
 
 export default function App({ Component, pageProps }) {
+  // return null;
   return (
     <>
       <DefaultSeo
